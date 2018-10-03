@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Syllego</string>
+    <string name="add_a_book_message">Add a Book</string>
+    <string name="book_name">Book Name</string>
+    <string name="author">Author</string>
+    <string name="year_released">Year Released</string>
+    <string name="isbn">ISBN</string>
+    <string name="completed">Completed</string>
+    <string name="pending">Pending</string>
+    <string name="dropped">Dropped</string>
+    <string name="add_book">Add Book</string>
+    <string name="edit_book_information">Edit Book Information</string>
+    <string name="edit">Edit</string>
+    <string name="edit_book">Edit Book</string>
+    <string name="BookNameEmptyError">Book name field is empty!</string>
+    <string name="BookAuthorEmptyError">Book Author field is empty!</string>
+    <string name="YearReleasedEmptyError">Year Released field is empty!</string>
+    <string name="ISBNEmptyError">ISBN field is empty! </string>
+</resources>

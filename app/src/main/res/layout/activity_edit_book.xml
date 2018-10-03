@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditBook">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="@string/edit_book_information"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <EditText
+        android:id="@+id/Edit_BookName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/book_name" />
+
+    <EditText
+        android:id="@+id/Edit_BookAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/author" />
+
+    <EditText
+        android:id="@+id/Edit_BookYearReleased"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/year_released" />
+
+    <EditText
+        android:id="@+id/Edit_ISBN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/isbn" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Edit_ProgressRadioGroup">
+
+        <RadioButton
+            android:id="@+id/Edit_RadioButtonCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/completed" />
+
+        <RadioButton
+            android:id="@+id/Edit_RadioButtonPending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pending" />
+
+        <RadioButton
+            android:id="@+id/Edit_RadioButtonDropped"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dropped" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/ConfirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_book"
+        android:onClick="editBook"/>
+
+
+</LinearLayout>

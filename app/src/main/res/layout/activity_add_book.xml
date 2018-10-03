@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddBook">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="@string/add_a_book_message"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+
+    <AutoCompleteTextView
+        android:id="@+id/Add_BookName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Book Name" />
+
+
+    <EditText
+        android:id="@+id/Add_BookAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/author" />
+
+    <EditText
+        android:id="@+id/Add_BookYearReleased"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/year_released" />
+
+    <EditText
+        android:id="@+id/Add_ISBN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/isbn" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Add_ProgressRadioGroup">
+
+        <RadioButton
+            android:id="@+id/Add_RadioButtonCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/completed" />
+
+        <RadioButton
+            android:id="@+id/Add_RadioButtonPending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pending" />
+
+        <RadioButton
+            android:id="@+id/Add_RadioButtonDropped"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dropped" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/ConfirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_book"
+        android:onClick="addBook"/>
+
+
+</LinearLayout>
