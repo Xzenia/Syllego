@@ -107,13 +107,13 @@ public class AddBook extends AppCompatActivity {
     */
     @Override
     public void onBackPressed(){
-        Intent goBackToHome = new Intent(this, MainActivity.class);
+        Intent goBackToHome = new Intent(this, BookList.class);
         startActivity(goBackToHome);
     }
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent goBackToHome = new Intent(this, MainActivity.class);
+        Intent goBackToHome = new Intent(this, BookList.class);
         startActivity(goBackToHome);
         return true;
     }

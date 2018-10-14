@@ -13,7 +13,7 @@ public class BookDataController extends SQLiteOpenHelper {
 
     private static final String TABLENAME = "BookCatalogue";
     private static final String COLID = "_ID";
-
+    private static final String COLUSERID = "USERID";
     private static final String COL1 = "Name";
     private static final String COL2 = "Author";
     private static final String COL3 = "YearReleased";
@@ -28,7 +28,7 @@ public class BookDataController extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE "+ TABLENAME + "(_ID INTEGER PRIMARY KEY, "+
-                COL1 +" TEXT, "+ COL2 +" TEXT, "+ COL3 + " TEXT, "+ COL4 +" TEXT, "+ COL5 + " TEXT );";
+                COLUSERID+" TEXT, "+COL1 +" TEXT, "+ COL2 +" TEXT, "+ COL3 + " TEXT, "+ COL4 +" TEXT, "+ COL5 + " TEXT );";
         db.execSQL(createTable);
     }
 
@@ -82,4 +82,12 @@ public class BookDataController extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query,null);
         return data;
     }
+
+    public Cursor getUserBookList(int userBookId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLENAME+" WHERE "+COLUSERID+" = "+userBookId;
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
 }

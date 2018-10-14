@@ -64,14 +64,14 @@ public class ViewBook extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent goToMainActivity = new Intent(this, MainActivity.class);
+        Intent goToMainActivity = new Intent(this, BookList.class);
         startActivity(goToMainActivity);
         this.finish();
     }
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent goToMainActivity = new Intent(this, MainActivity.class);
+        Intent goToMainActivity = new Intent(this, BookList.class);
         startActivity(goToMainActivity);
         this.finish();
         return true;

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class BookList extends AppCompatActivity {
 
     private ArrayList<Book> bookList = new ArrayList<>();
     private BookDataController bdc;
@@ -22,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bdc = new BookDataController(this);
-        bookList = getBookList();
+        Bundle data = getIntent().getExtras();
+        int userId = (int) data.get("UserId");
+        bookList = getBookList(userId);
         initializeRecyclerView();
     }
 
-    private ArrayList<Book> getBookList(){
-        Cursor bookData = bdc.getAllData();
+    private ArrayList<Book> getBookList(int userId){
+        Cursor bookData = bdc.getUserBookList(userId);
         ArrayList<Book> temp = new ArrayList<>();
         while(bookData.moveToNext()){
             Book loadBook = new Book();

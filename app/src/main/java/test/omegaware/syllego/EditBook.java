@@ -128,7 +128,7 @@ public class EditBook extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.DeleteItem:
                 bdc.deleteData(selectedBook.getBookID());
-                Intent goToMainActivity = new Intent (this, MainActivity.class);
+                Intent goToMainActivity = new Intent (this, BookList.class);
                 toastMessage("Book entry deleted!");
                 startActivity(goToMainActivity);
 
