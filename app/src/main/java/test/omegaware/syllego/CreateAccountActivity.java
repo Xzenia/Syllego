@@ -1,67 +1,61 @@
 package test.omegaware.syllego;
 
-import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.security.NoSuchAlgorithmException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class CreateAccountActivity extends AppCompatActivity {
 
+    private static final String TAG = "CreateAccountActivity";
     EditText fullNameEditText;
-    EditText usernameEditText;
+    EditText emailEditText;
     EditText passwordEditText;
+    FirebaseAuth firebaseAuth;
 
-    UserDataController udc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
         fullNameEditText = findViewById(R.id.FullNameEditText);
-        usernameEditText = findViewById(R.id.UsernameEditText);
+        emailEditText = findViewById(R.id.UsernameEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
-        udc = new UserDataController(this);
-
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public void CreateAccount(View view) throws NoSuchAlgorithmException{
-        StringBuilder sb = new StringBuilder("");
-        User newUser = new User();
-
-        if (fullNameEditText.getText().toString().matches("")){
-            sb.append("Full Name field is empty!\n");
-        } else {
-            newUser.setFullName(fullNameEditText.getText().toString());
-        }
-
-        if (usernameEditText.getText().toString().matches("")){
-            sb.append("Username field is empty!\n");
-        } else {
-            newUser.setUsername(usernameEditText.getText().toString());
-        }
-
-        if (passwordEditText.getText().toString().matches("")){
-            sb.append("Password field is empty!");
-        } else {
-            newUser.setPasswordHash(udc.getHashPassword(passwordEditText.getText().toString()));
-        }
-
-        if (sb.toString().matches("")){
-            boolean isLoggedIn = udc.createUser(newUser);
-
-            if (isLoggedIn){
-                Intent goToMainActivity = new Intent(this, BookList.class);
-                startActivity(goToMainActivity);
-            } else {
-                toastMessage("Username or password is incorrect!");
-            }
-
-        } else {
-            toastMessage(sb.toString());
+    public void CreateAccount(View view) {
+        if (!emailEditText.getText().toString().trim().equals("") && !passwordEditText.getText().toString().trim().equals("")){
+            firebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                try{
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    toastMessage("User ID: "+user.getUid());
+                                } catch (Exception ex){
+                                    toastMessage(ex.getMessage());
+                                }
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                toastMessage(getString(R.string.authentication_failed));
+                            }
+                        }
+                    });
         }
     }
 

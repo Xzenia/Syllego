@@ -16,4 +16,9 @@
     <string name="BookAuthorEmptyError">Book Author field is empty!</string>
     <string name="YearReleasedEmptyError">Year Released field is empty!</string>
     <string name="ISBNEmptyError">ISBN field is empty! </string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="authentication_failed">Authentication failed.</string>
 </resources>

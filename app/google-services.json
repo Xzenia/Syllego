@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "224964533138",
+    "firebase_url": "https://syllego-30e12.firebaseio.com",
+    "project_id": "syllego-30e12",
+    "storage_bucket": "syllego-30e12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224964533138:android:a8fc06d1142e4ed6",
+        "android_client_info": {
+          "package_name": "test.omegaware.syllego"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224964533138-ekn3r7j3ep2b1m562s7cfqvbc1pi57g4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv0kQ6DAGwMb7yci-jkchlFRj1gxNt05M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

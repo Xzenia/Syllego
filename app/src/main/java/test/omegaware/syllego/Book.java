@@ -1,21 +1,26 @@
 package test.omegaware.syllego;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
 
-    private int BookID;
-    private String BookName;
-    private String BookAuthor;
-    private String YearReleased;
-    private String ISBN;
-    private String Status;
+    private String UserID = "";
+    private String BookID = "";
+    private String BookName = "";
+    private String BookAuthor = "";
+    private String YearReleased = "";
+    private String ISBN = "";
+    private String Status = "";
 
-    public int getBookID() {
+    public String getBookID() {
         return BookID;
     }
 
-    public void setBookID(int bookID) {
+    public void setBookID(String bookID) {
         BookID = bookID;
     }
 
@@ -60,4 +65,11 @@ public class Book implements Serializable{
     }
 
 
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String userID) {
+        UserID = userID;
+    }
 }

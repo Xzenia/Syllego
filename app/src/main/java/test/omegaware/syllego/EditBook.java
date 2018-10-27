@@ -3,7 +3,6 @@ package test.omegaware.syllego;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +11,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class EditBook extends AppCompatActivity {
 
@@ -40,7 +41,8 @@ public class EditBook extends AppCompatActivity {
 
         editBookStatusRadioGroup = findViewById(R.id.Edit_ProgressRadioGroup);
 
-        bdc = new BookDataController(this);
+        bdc = new BookDataController();
+
 
         Bundle data = getIntent().getExtras();
         selectedBook = (Book) data.get("SelectedBook");
@@ -73,8 +75,7 @@ public class EditBook extends AppCompatActivity {
     public void editBook(View view){
 
         Book updatedBook = new Book();
-
-        StringBuilder errorStringBuilder = new StringBuilder("");
+        StringBuilder errorStringBuilder = new StringBuilder();
 
         if (editBookNameField.getText().toString().isEmpty()){
             errorStringBuilder.append(getString(R.string.BookNameEmptyError));
@@ -104,7 +105,7 @@ public class EditBook extends AppCompatActivity {
         }
 
         updatedBook.setBookID(selectedBook.getBookID());
-
+        updatedBook.setUserID(selectedBook.getUserID());
         RadioButton selectedRadioButton = findViewById(editBookStatusRadioGroup.getCheckedRadioButtonId());
         updatedBook.setStatus(selectedRadioButton.getText().toString());
 

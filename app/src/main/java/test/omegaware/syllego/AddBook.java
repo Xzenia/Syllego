@@ -25,29 +25,30 @@ public class AddBook extends AppCompatActivity {
 
     EditText[] inputFields;
 
+    String UserID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
+        Bundle getUserId = getIntent().getExtras();
+        UserID = (String) getUserId.get("UserID");
+        bdc = new BookDataController();
+
         addBookNameField = findViewById(R.id.Add_BookName);
         addBookAuthorField = findViewById(R.id.Add_BookAuthor);
         addBookYearReleasedField = findViewById(R.id.Add_BookYearReleased);
         addBookISBNField = findViewById(R.id.Add_ISBN);
-
         addBookStatusRadioGroup = findViewById(R.id.Add_ProgressRadioGroup);
         inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField};
-
-        bdc = new BookDataController(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         addBookStatusRadioGroup.check(R.id.Add_RadioButtonCompleted);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void addBook(View view){
         Book newBook = new Book();
-        Random random = new Random();
         StringBuilder errorStringBuilder = new StringBuilder("");
         if (addBookNameField.getText().toString().isEmpty()){
             errorStringBuilder.append(getString(R.string.BookNameEmptyError));
@@ -76,10 +77,9 @@ public class AddBook extends AppCompatActivity {
             newBook.setISBN(addBookISBNField.getText().toString());
         }
 
-        newBook.setBookID(random.nextInt(999999));
-
         RadioButton selectedRadioButton = findViewById(addBookStatusRadioGroup.getCheckedRadioButtonId());
         newBook.setStatus(selectedRadioButton.getText().toString());
+        newBook.setUserID(UserID);
 
         if (errorStringBuilder.toString().equals("")) {
             bdc.addData(newBook);
@@ -100,21 +100,15 @@ public class AddBook extends AppCompatActivity {
     public void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
-    /*
-    /   TODO: BOTH OF THESE METHODS ARE HACKS!
-    /   THERE NEEDS TO BE A WAY TO UPDATE RECYCLERVIEW WITHOUT RESORTING TO STARTING IT UP AGAIN.
-    /   THERE IS NOTICEABLE LAG WHEN RESTARTING MAINACTIVITY.
-    */
+
     @Override
     public void onBackPressed(){
-        Intent goBackToHome = new Intent(this, BookList.class);
-        startActivity(goBackToHome);
+        this.finish();
     }
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent goBackToHome = new Intent(this, BookList.class);
-        startActivity(goBackToHome);
+        this.finish();
         return true;
     }
 }
