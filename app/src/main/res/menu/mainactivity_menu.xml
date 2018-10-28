@@ -11,7 +11,13 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/HelpButton"
-        android:title="Help" />
+        android:title="@string/help" />
 
+    <item
+        android:id="@+id/SignOutButton"
+        android:checkable="false"
+        android:enabled="true"
+        android:title="@string/sign_out"
+        android:visible="true" />
 
 </menu>

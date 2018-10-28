@@ -33,12 +33,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         emailEditText = findViewById(R.id.UsernameEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
         firebaseAuth = FirebaseAuth.getInstance();
-
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-                    goToBookList(firebaseAuth.getCurrentUser().getUid());
+                    goToBookList();
                 }
             }
         };
@@ -50,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void LoginUser(View view) {
-        if (emailEditText.getText().toString().trim() != "" && passwordEditText.getText().toString().trim() != ""){
+        if (!emailEditText.getText().toString().matches("") && !passwordEditText.getText().toString().matches("")){
             firebaseAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -59,8 +58,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
                                 toastMessage("User UID: "+user.getUid());
-                                goToBookList(user.getUid());
-
+                                goToBookList();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 toastMessage("Sign in failed: "+task.getException().toString());
@@ -71,9 +69,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    public void goToBookList(String uid){
+    public void goToBookList(){
         Intent goToBookList = new Intent(this, BookList.class);
-        goToBookList.putExtra("UserID", uid);
         startActivity(goToBookList);
     }
     public void GoToCreateAccountActivity(View view){

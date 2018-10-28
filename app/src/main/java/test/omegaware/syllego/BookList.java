@@ -132,6 +132,8 @@ public class BookList extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
+            case R.id.SignOutButton:
+                signOutUser();
             case R.id.AddItem:
                 Intent addBookPage = new Intent(this, AddBook.class);
                 addBookPage.putExtra("UserID", userId);
@@ -143,6 +145,13 @@ public class BookList extends AppCompatActivity {
 
     public void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    public void signOutUser(){
+        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+        firebaseAuth.signOut();
+        startActivity(loginPage);
+        this.finish();
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {
