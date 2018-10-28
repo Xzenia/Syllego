@@ -7,27 +7,36 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class BookList extends AppCompatActivity {
 
+    private static final String TAG = "BookList";
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter mRecyclerAdapter;
     private FirebaseAuth firebaseAuth;
+    private ProgressBar firebaseLoadingProgressBar;
     private String userId;
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +44,15 @@ public class BookList extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList");
+
+        firebaseLoadingProgressBar = findViewById(R.id.FirebaseLoadingProgressBar);
+        recyclerView = findViewById(R.id.BookContentList);
+
+        showProgressBar();
         initializeRecyclerView();
     }
 
     private void initializeRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.BookContentList);
         Query query = databaseReference.orderByChild("userID").equalTo(userId);
         FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
 
@@ -55,7 +68,6 @@ public class BookList extends AppCompatActivity {
                 holder.setBookAuthor(model.getBookAuthor());
                 holder.setBookYearReleased(model.getYearReleased());
                 holder.mView.setOnClickListener(new View.OnClickListener(){
-
                     @Override
                     public void onClick(View view) {
                         goToViewBook(model);
@@ -69,6 +81,20 @@ public class BookList extends AppCompatActivity {
                 return new BookListViewHolder(view);
             }
         };
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                hideProgressBar();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled", databaseError.toException());
+                toastMessage("Exception occurred:\n"+databaseError.toException());
+            }
+        });
+
         recyclerView.setAdapter(mRecyclerAdapter);
     }
 
@@ -80,6 +106,16 @@ public class BookList extends AppCompatActivity {
     public void onStop(){
         super.onStop();
         mRecyclerAdapter.stopListening();
+    }
+
+    public void showProgressBar(){
+        firebaseLoadingProgressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    public void hideProgressBar(){
+        firebaseLoadingProgressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     public void goToViewBook(Book book){
@@ -103,6 +139,10 @@ public class BookList extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void toastMessage(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {

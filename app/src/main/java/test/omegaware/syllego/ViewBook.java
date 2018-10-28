@@ -12,12 +12,12 @@ import android.widget.TextView;
 public class ViewBook extends AppCompatActivity {
 
     private static final String TAG = "ViewBook";
-    TextView viewBookNameField;
-    TextView viewBookAuthorField;
-    TextView viewBookYearReleasedField;
-    TextView viewBookISBNField;
-    TextView viewBookStatusField;
-    Book selectedBook;
+    private TextView viewBookNameField;
+    private TextView viewBookAuthorField;
+    private TextView viewBookYearReleasedField;
+    private TextView viewBookISBNField;
+    private TextView viewBookStatusField;
+    private Book selectedBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +76,4 @@ public class ViewBook extends AppCompatActivity {
         this.finish();
         return true;
     }
-
-
 }

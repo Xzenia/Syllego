@@ -18,10 +18,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class CreateAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateAccountActivity";
-    EditText fullNameEditText;
-    EditText emailEditText;
-    EditText passwordEditText;
-    FirebaseAuth firebaseAuth;
+    private EditText fullNameEditText;
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                     });
         }
     }
-
 
     public void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();

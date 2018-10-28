@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,13 +20,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener  {
 
-    private static final int RC_SIGN_IN = 6969;
     private static final String TAG = "LoginActivity";
-    EditText emailEditText;
-    EditText passwordEditText;
-    SignInButton signInButton;
-    FirebaseAuth firebaseAuth;
-
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +34,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         passwordEditText = findViewById(R.id.PasswordEditText);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){
+                    goToBookList(firebaseAuth.getCurrentUser().getUid());
+                }
+            }
+        };
+    }
+
+    public void onStart(){
+        super.onStart();
+        firebaseAuth.addAuthStateListener(firebaseAuthStateListener);
     }
 
     public void LoginUser(View view) {
@@ -54,13 +63,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                             } else {
                                 // If sign in fails, display a message to the user.
-                                toastMessage("Email or password is incorrect! Please try again.");
+                                toastMessage("Sign in failed: "+task.getException().toString());
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                             }
                         }
                     });
         }
-
     }
 
     public void goToBookList(String uid){
@@ -73,12 +81,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         startActivity(createAccountActivity);
     }
 
-    public void toastMessage(String message){
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        toastMessage(getString(R.string.no_connection_error));
+    }
 
+    public void toastMessage(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

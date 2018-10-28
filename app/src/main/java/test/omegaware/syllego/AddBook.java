@@ -9,23 +9,26 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import java.util.Random;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class AddBook extends AppCompatActivity {
 
     private static final String TAG = "AddBook";
-    AutoCompleteTextView addBookNameField;
-    EditText addBookAuthorField;
-    EditText addBookYearReleasedField;
-    EditText addBookISBNField;
+    private AutoCompleteTextView addBookNameField;
+    private EditText addBookAuthorField;
+    private EditText addBookYearReleasedField;
+    private EditText addBookISBNField;
+    private IntentIntegrator barCodeScan;
 
-    RadioGroup addBookStatusRadioGroup;
+    private RadioGroup addBookStatusRadioGroup;
 
-    BookDataController bdc;
+    private BookDataController bdc;
 
-    EditText[] inputFields;
+    private EditText[] inputFields;
 
-    String UserID;
+    private String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class AddBook extends AppCompatActivity {
         inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField};
         addBookStatusRadioGroup.check(R.id.Add_RadioButtonCompleted);
 
+        barCodeScan = new IntentIntegrator(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -87,6 +91,24 @@ public class AddBook extends AppCompatActivity {
             clearFields();
         } else {
             toastMessage(errorStringBuilder.toString());
+        }
+    }
+
+    public void startScanActivity(View view){
+        barCodeScan.initiateScan();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result == null) {
+            toastMessage("Result not found!");
+        } else {
+            try {
+                addBookISBNField.setText(result.getContents());
+            } catch (Exception e) {
+                e.printStackTrace();
+                toastMessage(result.getContents());
+            }
         }
     }
 

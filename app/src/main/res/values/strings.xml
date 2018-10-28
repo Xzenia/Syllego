@@ -21,4 +21,6 @@
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create Account</string>
     <string name="authentication_failed">Authentication failed.</string>
+    <string name="scan_bar_code">Scan</string>
+    <string name="no_connection_error">Could not connect to application servers. Please check your connection and try again!</string>
 </resources>

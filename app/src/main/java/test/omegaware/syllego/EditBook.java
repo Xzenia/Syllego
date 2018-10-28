@@ -12,22 +12,23 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class EditBook extends AppCompatActivity {
 
     private static final String TAG = "EditBook";
 
-    EditText editBookNameField;
-    EditText editBookAuthorField;
-    EditText editBookYearReleasedField;
-    EditText editBookISBNField;
+    private EditText editBookNameField;
+    private EditText editBookAuthorField;
+    private EditText editBookYearReleasedField;
+    private EditText editBookISBNField;
+    private IntentIntegrator barCodeScan;
+    private RadioGroup editBookStatusRadioGroup;
 
-    RadioGroup editBookStatusRadioGroup;
+    private Book selectedBook;
 
-    Book selectedBook;
-
-    BookDataController bdc;
+    private BookDataController bdc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,12 @@ public class EditBook extends AppCompatActivity {
 
         bdc = new BookDataController();
 
-
         Bundle data = getIntent().getExtras();
         selectedBook = (Book) data.get("SelectedBook");
+
         fillFields();
 
+        barCodeScan = new IntentIntegrator(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -73,7 +75,6 @@ public class EditBook extends AppCompatActivity {
     }
 
     public void editBook(View view){
-
         Book updatedBook = new Book();
         StringBuilder errorStringBuilder = new StringBuilder();
 
@@ -116,7 +117,24 @@ public class EditBook extends AppCompatActivity {
         } else {
             toastMessage(errorStringBuilder.toString());
         }
+    }
 
+    public void startScanActivity(View view){
+        barCodeScan.initiateScan();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result == null) {
+            toastMessage("Result not found!");
+        } else {
+            try {
+                editBookISBNField.setText(result.getContents());
+            } catch (Exception e) {
+                e.printStackTrace();
+                toastMessage(result.getContents());
+            }
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

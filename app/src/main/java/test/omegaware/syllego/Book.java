@@ -64,7 +64,6 @@ public class Book implements Serializable {
         Status = status;
     }
 
-
     public String getUserID() {
         return UserID;
     }
