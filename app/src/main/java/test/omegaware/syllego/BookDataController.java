@@ -30,5 +30,4 @@ public class BookDataController {
         childBookReference.removeValue();
         return true;
     }
-
 }

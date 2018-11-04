@@ -34,11 +34,12 @@ public class ViewBook extends AppCompatActivity {
         selectedBook = (Book) data.get("SelectedBook");
         fillFields(selectedBook);
 
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void fillFields(Book selectedBook){
-        viewBookNameField.setText("Book Name: "+ selectedBook.getBookName());
+        viewBookNameField.setText(selectedBook.getBookName());
         viewBookAuthorField.setText("Book Author: "+ selectedBook.getBookAuthor());
         viewBookYearReleasedField.setText("Book Release Year: "+ selectedBook.getYearReleased());
         viewBookISBNField.setText("Book ISBN: "+ selectedBook.getISBN());
@@ -71,8 +72,6 @@ public class ViewBook extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent goToMainActivity = new Intent(this, BookList.class);
-        startActivity(goToMainActivity);
         this.finish();
         return true;
     }

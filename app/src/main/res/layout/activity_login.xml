@@ -1,53 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/gradient"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/PasswordEditText"
+        android:layout_alignStart="@+id/PasswordEditText"
+        android:fontFamily="@font/exo_2_light"
+        android:gravity="center"
+        android:text="Password:"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="14dp"
+        tools:text="Password:" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="234dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="116dp"
+        android:background="#00000000"
+        android:fontFamily="@font/exo_2"
+        android:onClick="LoginUser"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="24dp"
+        tools:text="Start Booking!" />
+
+    <Button
+        android:id="@+id/createAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="182dp"
+        android:background="#00000000"
+        android:fontFamily="@font/exo_2"
+        android:onClick="GoToCreateAccountActivity"
+        android:text="Don't have an account yet?"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="14dp"
+        tools:text="Don't have an account yet?" />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/UsernameEditText"
+        android:layout_alignStart="@+id/UsernameEditText"
+        android:layout_marginBottom="-246dp"
+        android:fontFamily="@font/exo_2_light"
+        android:gravity="center"
+        android:text="Username:"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="14dp"
+        tools:text="Username:" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="157dp"
+        android:fontFamily="@font/exo_2_light"
+        android:text="Your Personal Bookkeeper"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="16dp"
+        tools:text="Your Personal Bookkeeper." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/exo_2_light"
+        android:text="Syllego"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="54dp"
+        tools:text="Syllego" />
 
     <EditText
         android:id="@+id/UsernameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="293dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="246dp"
+        android:background="@drawable/roundrect"
         android:ems="10"
+        android:fontFamily="@font/exo_2"
+        android:gravity="center_vertical"
+        android:hint="Your Username"
         android:inputType="textPersonName"
-        android:hint="@string/username"/>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp" />
 
     <EditText
         android:id="@+id/PasswordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/createAccountButton"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundrect"
         android:ems="10"
+        android:fontFamily="@font/exo_2"
+        android:gravity="center_vertical"
+        android:hint="Your Password"
         android:inputType="textPassword"
-        android:hint="@string/password" />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    <Button
-        android:id="@+id/LoginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="LoginUser"
-        android:text="@string/sign_in" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25dp" />
-
-    <Button
-        android:id="@+id/CreateAccountButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="GoToCreateAccountActivity"
-        android:text="@string/create_account" />
-</LinearLayout>
+</RelativeLayout>

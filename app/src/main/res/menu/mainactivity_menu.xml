@@ -9,15 +9,19 @@
         android:title="Item"
         android:visible="true"
         app:showAsAction="always" />
+
     <item
-        android:id="@+id/HelpButton"
-        android:title="@string/help" />
+        android:id="@+id/ShowHistory"
+        android:enabled="true"
+        android:title="@string/show_history"
+        android:visible="true" />
 
     <item
         android:id="@+id/SignOutButton"
-        android:checkable="false"
         android:enabled="true"
         android:title="@string/sign_out"
         android:visible="true" />
+
+
 
 </menu>

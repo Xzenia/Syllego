@@ -1,6 +1,7 @@
 package test.omegaware.syllego;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class BookList extends AppCompatActivity {
     private ProgressBar firebaseLoadingProgressBar;
     private String userId;
     private RecyclerView recyclerView;
+
+    private boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +50,10 @@ public class BookList extends AppCompatActivity {
 
         firebaseLoadingProgressBar = findViewById(R.id.FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BookContentList);
-
         showProgressBar();
         initializeRecyclerView();
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void initializeRecyclerView(){
@@ -132,12 +136,18 @@ public class BookList extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
+            case R.id.ShowHistory:
+                Intent historyActivity = new Intent(this, DataHistory.class);
+                startActivity(historyActivity);
+                return true;
             case R.id.SignOutButton:
                 signOutUser();
+                return true;
             case R.id.AddItem:
                 Intent addBookPage = new Intent(this, AddBook.class);
                 addBookPage.putExtra("UserID", userId);
                 startActivity(addBookPage);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -149,9 +159,25 @@ public class BookList extends AppCompatActivity {
 
     public void signOutUser(){
         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
-        firebaseAuth.signOut();
         startActivity(loginPage);
+        firebaseAuth.signOut();
         this.finish();
+    }
+
+    public void onBackPressed(){
+        Log.d(TAG, "Back button has been pressed!");
+        if (doubleBackToExitPressedOnce){
+            moveTaskToBack(true);
+            return;
+        }
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(getApplicationContext(),getString(R.string.home_back_button_prompt), Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {

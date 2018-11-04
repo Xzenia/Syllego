@@ -21,6 +21,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText fullNameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
+    private EditText confirmEditText;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -31,10 +32,16 @@ public class CreateAccountActivity extends AppCompatActivity {
         fullNameEditText = findViewById(R.id.FullNameEditText);
         emailEditText = findViewById(R.id.UsernameEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
+        confirmEditText = findViewById(R.id.ConfirmPasswordEditText);
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public void CreateAccount(View view) {
+        if(!passwordEditText.getText().toString().trim().equals(confirmEditText.getText().toString().trim())){
+            toastMessage("Passwords Don't Match. Please check your password fields.");
+            return;
+        }
+
         if (!emailEditText.getText().toString().trim().equals("") && !passwordEditText.getText().toString().trim().equals("")){
             firebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

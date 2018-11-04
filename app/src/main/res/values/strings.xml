@@ -25,4 +25,7 @@
     <string name="no_connection_error">Could not connect to application servers. Please check your connection and try again!</string>
     <string name="sign_out">Sign Out</string>
     <string name="help">Help</string>
+    <string name="show_history">Show History</string>
+    <string name="home_back_button_prompt">Tap the back button again to exit.</string>
+    <string name="delete_prompt_question">Delete this book from your catalog?</string>
 </resources>

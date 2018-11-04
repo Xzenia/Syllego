@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BookList">
-
+    tools:context=".DataHistory">
 
     <ProgressBar
-        android:id="@+id/FirebaseLoadingProgressBar"
+        android:id="@+id/DataHistoryLoadingProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -16,7 +15,7 @@
         android:layout_weight="1" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/BookContentList"
+        android:id="@+id/DataHistoryList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient" />

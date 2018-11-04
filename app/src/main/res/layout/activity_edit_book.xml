@@ -3,96 +3,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".EditBook">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="@string/edit_book_information"
-        android:textSize="22dp"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
-
-    <EditText
-        android:id="@+id/Edit_BookName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/book_name" />
-
-    <EditText
-        android:id="@+id/Edit_BookAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/author" />
-
-    <EditText
-        android:id="@+id/Edit_BookYearReleased"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="@string/year_released" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/exo_2"
+            android:gravity="center"
+            android:text="@string/edit_book_information"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
 
         <EditText
-            android:id="@+id/Edit_ISBN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/Edit_BookName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundrect"
             android:ems="10"
+            android:fontFamily="@font/exo_2"
+            android:hint="@string/book_name"
             android:inputType="text"
-            android:hint="@string/isbn" />
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <EditText
+            android:id="@+id/Edit_BookAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2"
+            android:hint="@string/author"
+            android:inputType="text"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <EditText
+            android:id="@+id/Edit_BookYearReleased"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2"
+            android:hint="@string/year_released"
+            android:inputType="number"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/Edit_ISBN"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/roundrect"
+                android:ems="10"
+                android:fontFamily="@font/exo_2"
+                android:hint="@string/isbn"
+                android:inputType="text"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#71ffffff"
+                android:fontFamily="@font/exo_2_light"
+                android:onClick="startScanActivity"
+                android:text="@string/scan_bar_code"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/Edit_ProgressRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:id="@+id/Edit_RadioButtonCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_light"
+                android:text="@string/completed"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/Edit_RadioButtonPending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_light"
+                android:text="@string/pending"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/Edit_RadioButtonDropped"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_light"
+                android:text="@string/dropped"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:layout_weight="1" />
+        </RadioGroup>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/ConfirmButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/scan_bar_code"
-            android:onClick="startScanActivity"/>
+            android:layout_height="wrap_content"
+            android:background="#71ffffff"
+            android:fontFamily="@font/exo_2_light"
+            android:onClick="editBook"
+            android:text="@string/edit_book"
+            android:textColor="@android:color/white"
+            android:textSize="24dp" />
+
 
     </LinearLayout>
-
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Edit_ProgressRadioGroup">
-
-        <RadioButton
-            android:id="@+id/Edit_RadioButtonCompleted"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/completed" />
-
-        <RadioButton
-            android:id="@+id/Edit_RadioButtonPending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pending" />
-
-        <RadioButton
-            android:id="@+id/Edit_RadioButtonDropped"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dropped" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/ConfirmButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_book"
-        android:onClick="editBook"/>
 
 
 </LinearLayout>

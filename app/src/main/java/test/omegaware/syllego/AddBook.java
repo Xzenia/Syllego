@@ -26,6 +26,8 @@ public class AddBook extends AppCompatActivity {
 
     private BookDataController bdc;
 
+    private HistoryDataController hdc;
+
     private EditText[] inputFields;
 
     private String UserID;
@@ -38,6 +40,7 @@ public class AddBook extends AppCompatActivity {
         Bundle getUserId = getIntent().getExtras();
         UserID = (String) getUserId.get("UserID");
         bdc = new BookDataController();
+        hdc = new HistoryDataController();
 
         addBookNameField = findViewById(R.id.Add_BookName);
         addBookAuthorField = findViewById(R.id.Add_BookAuthor);
@@ -48,12 +51,14 @@ public class AddBook extends AppCompatActivity {
         addBookStatusRadioGroup.check(R.id.Add_RadioButtonCompleted);
 
         barCodeScan = new IntentIntegrator(this);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void addBook(View view){
         Book newBook = new Book();
-        StringBuilder errorStringBuilder = new StringBuilder("");
+        StringBuilder errorStringBuilder = new StringBuilder();
         if (addBookNameField.getText().toString().isEmpty()){
             errorStringBuilder.append(getString(R.string.BookNameEmptyError));
             errorStringBuilder.append("\n");
@@ -89,6 +94,7 @@ public class AddBook extends AppCompatActivity {
             bdc.addData(newBook);
             toastMessage("Successfully added book data!");
             clearFields();
+            hdc.addToHistory("You've added "+newBook.getBookName()+" in your catalogue!");
         } else {
             toastMessage(errorStringBuilder.toString());
         }

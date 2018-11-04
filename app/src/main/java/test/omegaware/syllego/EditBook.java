@@ -1,6 +1,8 @@
 package test.omegaware.syllego;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +31,9 @@ public class EditBook extends AppCompatActivity {
     private Book selectedBook;
 
     private BookDataController bdc;
+    private HistoryDataController hdc;
 
+    private DialogInterface.OnClickListener deleteDialogInterfaceListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +47,27 @@ public class EditBook extends AppCompatActivity {
         editBookStatusRadioGroup = findViewById(R.id.Edit_ProgressRadioGroup);
 
         bdc = new BookDataController();
-
+        hdc = new HistoryDataController();
         Bundle data = getIntent().getExtras();
         selectedBook = (Book) data.get("SelectedBook");
 
         fillFields();
 
         barCodeScan = new IntentIntegrator(this);
+
+        deleteDialogInterfaceListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int choice) {
+                switch (choice) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        deleteItem();
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -114,6 +132,7 @@ public class EditBook extends AppCompatActivity {
             bdc.editData(updatedBook);
             toastMessage("Successfully edited book data!");
             goToViewBook(updatedBook);
+            hdc.addToHistory("You've edited "+updatedBook.getBookName()+"'s information in your catalogue!");
         } else {
             toastMessage(errorStringBuilder.toString());
         }
@@ -146,25 +165,28 @@ public class EditBook extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.DeleteItem:
-                bdc.deleteData(selectedBook.getBookID());
-                Intent goToMainActivity = new Intent (this, BookList.class);
-                toastMessage("Book entry deleted!");
-                startActivity(goToMainActivity);
-
+                //Band-aid fix to Theme.AppCompat related crash when delete prompt is started.
+                AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+                builder.setMessage(R.string.delete_prompt_question)
+                        .setPositiveButton("Yes", deleteDialogInterfaceListener)
+                        .setNegativeButton("No",deleteDialogInterfaceListener).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    public void deleteItem(){
+        bdc.deleteData(selectedBook.getBookID());
+        Intent goToMainActivity = new Intent (this, BookList.class);
+        toastMessage("Book entry deleted!");
+        hdc.addToHistory("You've deleted "+selectedBook.getBookName()+" from your catalogue!");
+        startActivity(goToMainActivity);
+    }
     public void goToViewBook(Book updatedBook) {
         Intent goToViewBook = new Intent(this, ViewBook.class);
         goToViewBook.putExtra("SelectedBook", updatedBook);
         startActivity(goToViewBook);
-    }
-
-    public void onBackPressed(){
-        goToViewBook(selectedBook);
-        this.finish();
     }
 
     @Override
@@ -172,6 +194,11 @@ public class EditBook extends AppCompatActivity {
         goToViewBook(selectedBook);
         this.finish();
         return true;
+    }
+
+    public void onBackPressed(){
+        goToViewBook(selectedBook);
+        this.finish();
     }
 
     public void toastMessage(String message){
