@@ -6,17 +6,18 @@
     android:background="@drawable/gradient"
     tools:context=".LoginActivity">
 
+
     <TextView
-        android:layout_width="70dp"
+        android:id="@+id/VersionLabel"
+        android:layout_width="116dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/PasswordEditText"
-        android:layout_alignStart="@+id/PasswordEditText"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:fontFamily="@font/exo_2_light"
-        android:gravity="center"
-        android:text="Password:"
+        android:text="Ver. 0.9.5"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="14dp"
-        tools:text="Password:" />
+        tools:text="Ver. 0.9.5" />
 
     <Button
         android:id="@+id/LoginButton"
@@ -24,47 +25,18 @@
         android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="105dp"
         android:background="#00000000"
         android:fontFamily="@font/exo_2"
         android:onClick="LoginUser"
-        android:text="Login"
+        android:text="Start Booking!"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="24dp"
         tools:text="Start Booking!" />
 
-    <Button
-        android:id="@+id/createAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="182dp"
-        android:background="#00000000"
-        android:fontFamily="@font/exo_2"
-        android:onClick="GoToCreateAccountActivity"
-        android:text="Don't have an account yet?"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="14dp"
-        tools:text="Don't have an account yet?" />
-
     <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/UsernameEditText"
-        android:layout_alignStart="@+id/UsernameEditText"
-        android:layout_marginBottom="-246dp"
-        android:fontFamily="@font/exo_2_light"
-        android:gravity="center"
-        android:text="Username:"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="14dp"
-        tools:text="Username:" />
-
-    <TextView
+        android:id="@+id/SubtitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -77,6 +49,7 @@
         tools:text="Your Personal Bookkeeper." />
 
     <TextView
+        android:id="@+id/TitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -88,35 +61,98 @@
         android:textSize="54dp"
         tools:text="Syllego" />
 
-    <EditText
-        android:id="@+id/UsernameEditText"
-        android:layout_width="293dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
+    <LinearLayout
+        android:layout_width="279dp"
+        android:layout_height="168dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="246dp"
-        android:background="@drawable/roundrect"
-        android:ems="10"
-        android:fontFamily="@font/exo_2"
-        android:gravity="center_vertical"
-        android:hint="Your Username"
-        android:inputType="textPersonName"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp" />
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_marginBottom="217dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/PasswordEditText"
-        android:layout_width="290dp"
-        android:layout_height="40dp"
-        android:layout_above="@+id/createAccountButton"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/roundrect"
-        android:ems="10"
-        android:fontFamily="@font/exo_2"
-        android:gravity="center_vertical"
-        android:hint="Your Password"
-        android:inputType="textPassword"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp" />
+        <TextView
+            android:id="@+id/EmailAddressLabel"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@+id/UsernameEditText"
+            android:layout_alignStart="@+id/UsernameEditText"
+            android:layout_marginBottom="-246dp"
+            android:fontFamily="@font/exo_2_light"
+            android:gravity="center"
+            android:text="Email Address:"
+            android:textAlignment="viewStart"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="14dp"
+            tools:text="Email Address:" />
+
+        <EditText
+            android:id="@+id/UsernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="246dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2"
+            android:gravity="center_vertical"
+            android:hint="Your Email"
+            android:inputType="textPersonName"
+            android:textColor="#101010"
+            android:textSize="22sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/PasswordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@+id/UsernameEditText"
+            android:layout_alignStart="@+id/UsernameEditText"
+            android:layout_marginBottom="-246dp"
+            android:fontFamily="@font/exo_2_light"
+            android:gravity="center"
+            android:text="Password:"
+            android:textAlignment="viewStart"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="14dp"
+            tools:text="Password:" />
+
+        <EditText
+            android:id="@+id/PasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="250dp"
+            android:layout_weight="0"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2"
+            android:gravity="center_vertical"
+            android:hint="Your Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="#101010"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/createAccountButton"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:layout_above="@+id/LoginButton"
+            android:layout_alignEnd="@+id/UsernameEditText"
+            android:background="#00000000"
+            android:fontFamily="@font/exo_2"
+            android:onClick="GoToCreateAccountActivity"
+            android:text="Don't Have an Account?"
+            android:textAlignment="viewEnd"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            tools:text="Don't Have an Account?" />
+
+    </LinearLayout>
 
 </RelativeLayout>

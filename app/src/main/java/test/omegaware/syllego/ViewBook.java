@@ -34,7 +34,7 @@ public class ViewBook extends AppCompatActivity {
         selectedBook = (Book) data.get("SelectedBook");
         fillFields(selectedBook);
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(viewBookNameField.getText().toString());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -72,6 +72,8 @@ public class ViewBook extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){
+        Intent goToMainActivity = new Intent(this, BookList.class);
+        startActivity(goToMainActivity);
         this.finish();
         return true;
     }

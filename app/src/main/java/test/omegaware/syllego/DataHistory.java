@@ -47,7 +47,7 @@ public class DataHistory extends AppCompatActivity {
         showProgressBar();
         initializeRecyclerView();
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(R.string.activity_history);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

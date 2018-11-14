@@ -52,7 +52,7 @@ public class AddBook extends AppCompatActivity {
 
         barCodeScan = new IntentIntegrator(this);
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(R.string.add_a_book);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

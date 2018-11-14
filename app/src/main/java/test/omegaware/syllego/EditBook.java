@@ -67,7 +67,7 @@ public class EditBook extends AppCompatActivity {
             }
         };
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Edit "+selectedBook.getBookName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -132,7 +132,13 @@ public class EditBook extends AppCompatActivity {
             bdc.editData(updatedBook);
             toastMessage("Successfully edited book data!");
             goToViewBook(updatedBook);
-            hdc.addToHistory("You've edited "+updatedBook.getBookName()+"'s information in your catalogue!");
+
+            if (!updatedBook.getBookName().matches(selectedBook.getBookName())){
+                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in your catalogue! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
+            } else {
+                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in your catalogue!");
+            }
+
         } else {
             toastMessage(errorStringBuilder.toString());
         }

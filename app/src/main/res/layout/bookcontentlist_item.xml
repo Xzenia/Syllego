@@ -3,22 +3,30 @@
     android:id="@+id/ItemListRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#85ffffff">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/roundrect"
+    android:paddingLeft="4px"
+    android:paddingRight="4px">
 
     <TextView
         android:id="@+id/BookAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/BookName"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="47dp"
         android:fontFamily="@font/exo_2"
         android:text="Book Author"
-        android:textSize="16sp" />
+        android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:textSize="16sp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/BookName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -27,18 +35,21 @@
         android:fontFamily="@font/exo_2"
         android:text="Book Name"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp" />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/BookYearReleased"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/BookAuthor"
+        android:layout_below="@+id/BookName"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="-46dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="2dp"
         android:fontFamily="@font/exo_2"
+        android:paddingRight="3px"
         android:text="Year Released"
+        android:textColor="@android:color/black"
         android:textSize="16sp" />
 
 </RelativeLayout>

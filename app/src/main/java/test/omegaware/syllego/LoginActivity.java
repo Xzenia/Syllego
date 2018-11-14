@@ -1,7 +1,7 @@
 package test.omegaware.syllego;
 
-import android.app.ActionBar;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +26,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private EditText passwordEditText;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -58,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                                toastMessage("User UID: "+user.getUid());
                                 goToBookList();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -86,5 +87,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     public void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    public void onBackPressed(){
+        Log.d(TAG, "Back button has been pressed!");
+        if (doubleBackToExitPressedOnce){
+            moveTaskToBack(true);
+            return;
+        }
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(getApplicationContext(),getString(R.string.home_back_button_prompt), Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

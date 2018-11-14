@@ -42,6 +42,7 @@ public class BookList extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_AppCompat_Light);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -53,7 +54,7 @@ public class BookList extends AppCompatActivity {
         showProgressBar();
         initializeRecyclerView();
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(R.string.my_library);
     }
 
     private void initializeRecyclerView(){

@@ -4,81 +4,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/holo_blue_bright"
     tools:context=".ViewBook">
 
-    <TextView
-        android:id="@+id/view_BookName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_bright"
-        android:fontFamily="@font/exo_2_light"
-        android:text="View Book"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
-    <TextView
-        android:id="@+id/View_BookName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:background="#ad41beff"
-        android:fontFamily="@font/exo_2_light"
-        android:text="Book Name"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="34dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/view_BookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            android:fontFamily="@font/exo_2_light"
+            android:text="View Book"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
-    <TextView
-        android:id="@+id/View_BookAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.28"
-        android:background="#ad048dd5"
-        android:fontFamily="@font/exo_2_light"
-        android:text="Book Author"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="24dp" />
+        <TextView
+            android:id="@+id/View_BookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="#ad41beff"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Book Name"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="34dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/View_BookYearReleased"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:background="#bb13aeff"
-        android:fontFamily="@font/exo_2_light"
-        android:text="Year Released"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="24dp" />
+        <TextView
+            android:id="@+id/View_BookAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.28"
+            android:background="#ad048dd5"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Book Author"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
 
-    <TextView
-        android:id="@+id/View_BookISBN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:background="#bb0f7eb8"
-        android:fontFamily="@font/exo_2_light"
-        android:text="ISBN"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="24dp" />
+        <TextView
+            android:id="@+id/View_BookYearReleased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:background="#bb13aeff"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Year Released"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
 
-    <TextView
-        android:id="@+id/View_BookStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/gradient"
-        android:fontFamily="@font/exo_2_light"
-        android:text="Status"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="24dp" />
+        <TextView
+            android:id="@+id/View_BookISBN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="#bb0f7eb8"
+            android:fontFamily="@font/exo_2_light"
+            android:text="ISBN"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/View_BookStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/gradient"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Status"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

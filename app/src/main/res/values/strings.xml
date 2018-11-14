@@ -21,11 +21,16 @@
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create Account</string>
     <string name="authentication_failed">Authentication failed.</string>
-    <string name="scan_bar_code">Scan</string>
+    <string name="scan_bar_code">Scan ISBN Bar Code</string>
     <string name="no_connection_error">Could not connect to application servers. Please check your connection and try again!</string>
     <string name="sign_out">Sign Out</string>
     <string name="help">Help</string>
     <string name="show_history">Show History</string>
     <string name="home_back_button_prompt">Tap the back button again to exit.</string>
     <string name="delete_prompt_question">Delete this book from your catalog?</string>
+
+    <string name="title_activity_splash_screen">activity_splash_screen</string>
+    <string name="my_library">My Library</string>
+    <string name="activity_history">Activity History</string>
+    <string name="add_a_book">Add a book</string>
 </resources>

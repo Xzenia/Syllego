@@ -9,162 +9,172 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:fontFamily="@font/exo_2_light"
-        android:gravity="center"
-        android:text="@string/add_a_book_message"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="#ffffff"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        tools:text="ADD A BOOK" />
-
-
-    <AutoCompleteTextView
-        android:id="@+id/Add_BookName"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/roundrect"
-        android:fontFamily="@font/exo_2_light"
-        android:hint="Book Name"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="16sp" />
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="19dp" />
-
-    <EditText
-        android:id="@+id/Add_BookAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/roundrect"
-        android:ems="10"
-        android:fontFamily="@font/exo_2_light"
-        android:hint="@string/author"
-        android:inputType="text"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="16sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="19dp" />
-
-    <EditText
-        android:id="@+id/Add_BookYearReleased"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/roundrect"
-        android:ems="10"
-        android:fontFamily="@font/exo_2_light"
-        android:hint="@string/year_released"
-        android:inputType="number"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="16sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="19dp" />
+        android:layout_height="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/exo_2_light"
+            android:gravity="center"
+            android:text="@string/add_a_book_message"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#ffffff"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            tools:text="ADD A BOOK" />
+
+
+        <AutoCompleteTextView
+            android:id="@+id/Add_BookName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundrect"
+            android:fontFamily="@font/exo_2_light"
+            android:hint="Book Name"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="16sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <EditText
-            android:id="@+id/Add_ISBN"
-            android:layout_width="233dp"
+            android:id="@+id/Add_BookAuthor"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/roundrect"
             android:ems="10"
             android:fontFamily="@font/exo_2_light"
-            android:hint="@string/isbn"
+            android:hint="@string/author"
             android:inputType="text"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/button"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="19dp" />
+
+        <EditText
+            android:id="@+id/Add_BookYearReleased"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2_light"
+            android:hint="@string/year_released"
+            android:inputType="number"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/Add_ISBN"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/roundrect"
+                android:ems="10"
+                android:fontFamily="@font/exo_2_light"
+                android:hint="@string/isbn"
+                android:inputType="text"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="#6affffff"
+                android:fontFamily="@font/exo_2_light"
+                android:onClick="startScanActivity"
+                android:text="@string/scan_bar_code"
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/Add_ProgressRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/Add_RadioButtonCompleted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/exo_2_light"
+                    android:text="@string/completed"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/Add_RadioButtonPending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/exo_2_light"
+                    android:text="@string/pending"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/Add_RadioButtonDropped"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/exo_2_light"
+                    android:text="@string/dropped"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <Button
+            android:id="@+id/ConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#6affffff"
             android:fontFamily="@font/exo_2_light"
-            android:onClick="startScanActivity"
-            android:text="@string/scan_bar_code"
+            android:onClick="addBook"
+            android:text="@string/add_book"
             android:textColor="#ffffff"
             android:textSize="24dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_weight="1" />
-
-
     </LinearLayout>
-
-
-    <RadioGroup
-        android:id="@+id/Add_ProgressRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_weight="1" />
-
-        <RadioButton
-            android:id="@+id/Add_RadioButtonCompleted"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/exo_2_light"
-            android:text="@string/completed"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/Add_RadioButtonPending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/exo_2_light"
-            android:text="@string/pending"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/Add_RadioButtonDropped"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/exo_2_light"
-            android:text="@string/dropped"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_weight="1" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/ConfirmButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#6affffff"
-        android:fontFamily="@font/exo_2_light"
-        android:onClick="addBook"
-        android:text="@string/add_book"
-        android:textColor="#ffffff"
-        android:textSize="24dp" />
-
 
 </LinearLayout>
