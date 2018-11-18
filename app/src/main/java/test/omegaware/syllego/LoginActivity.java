@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             }
                         }
                     });
+        } else {
+            toastMessage("One or more fields are empty! Please fill them with the required information!");
         }
     }
 

@@ -51,37 +51,11 @@
         android:layout_margin="15dp">
 
         <TextView
-            android:id="@+id/lblTitle7"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_2_light"
-            android:gravity="center"
-            android:text="Full Name:"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="14dp" />
-
-        <EditText
-            android:id="@+id/FullNameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/roundrect"
-            android:ems="10"
-            android:fontFamily="@font/exo_2_light"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="20dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <TextView
             android:id="@+id/lblTitle8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/exo_2_light"
-            android:text="Username:"
+            android:text="Email:"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="14dp" />
 
@@ -92,7 +66,7 @@
             android:background="@drawable/roundrect"
             android:ems="10"
             android:fontFamily="@font/exo_2_light"
-            android:hint="Username"
+            android:hint="Email"
             android:inputType="textPersonName"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />

@@ -10,7 +10,6 @@ public class BookDataController {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference bookReference = database.getReference("Book");
 
-    //TODO: ADD ACTUAL DATA SEND CHECKS IN ADD AND EDIT DATA METHODS
     public boolean addData(Book newBook){
         DatabaseReference childBookReference = bookReference.child("BookList").push();
         newBook.setBookID(childBookReference.getKey());

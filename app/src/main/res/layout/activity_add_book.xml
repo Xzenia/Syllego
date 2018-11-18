@@ -7,9 +7,6 @@
     android:orientation="vertical"
     tools:context=".AddBook">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +23,7 @@
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:text="ADD A BOOK" />
 
@@ -40,11 +37,9 @@
             android:hint="Book Name"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="16sp" />
-
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/Add_BookAuthor"
@@ -57,10 +52,9 @@
             android:inputType="text"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="16sp" />
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/Add_BookYearReleased"
@@ -76,7 +70,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +91,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="19dp" />
+                android:layout_height="10dp" />
 
             <Button
                 android:id="@+id/button"
@@ -115,7 +109,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +156,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
+            android:layout_height="20dp" />
 
         <Button
             android:id="@+id/ConfirmButton"

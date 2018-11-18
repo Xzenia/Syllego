@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class CreateAccountActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateAccountActivity";
-    private EditText fullNameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText confirmEditText;
@@ -29,7 +28,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        fullNameEditText = findViewById(R.id.FullNameEditText);
         emailEditText = findViewById(R.id.UsernameEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
         confirmEditText = findViewById(R.id.ConfirmPasswordEditText);
@@ -38,7 +36,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     public void CreateAccount(View view) {
         if(!passwordEditText.getText().toString().trim().equals(confirmEditText.getText().toString().trim())){
-            toastMessage("Passwords Don't Match. Please check your password fields.");
+            toastMessage("Passwords don't match. Please check your password fields.");
             return;
         }
 
@@ -50,19 +48,15 @@ public class CreateAccountActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                try{
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    toastMessage("User ID: "+user.getUid());
-                                } catch (Exception ex){
-                                    toastMessage(ex.getMessage());
-                                }
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                toastMessage(getString(R.string.authentication_failed));
+                                toastMessage("Registration failed: "+task.getException());
                             }
                         }
                     });
+        } else {
+            toastMessage("Fields are empty! Please fill them with the required information.");
         }
     }
 

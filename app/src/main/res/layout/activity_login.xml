@@ -43,10 +43,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="157dp"
         android:fontFamily="@font/exo_2_light"
-        android:text="Your Personal Bookkeeper"
+        android:text="@string/subtitle"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="16dp"
-        tools:text="Your Personal Bookkeeper." />
+        tools:text="@string/subtitle" />
 
     <TextView
         android:id="@+id/TitleLabel"
@@ -137,18 +137,20 @@
             android:textColor="#101010"
             android:textSize="22sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <Button
             android:id="@+id/createAccountButton"
             android:layout_width="match_parent"
             android:layout_height="27dp"
-            android:layout_above="@+id/LoginButton"
-            android:layout_alignEnd="@+id/UsernameEditText"
             android:background="#00000000"
             android:fontFamily="@font/exo_2"
             android:onClick="GoToCreateAccountActivity"
             android:text="Don't Have an Account?"
-            android:textAlignment="viewEnd"
             android:textAllCaps="false"
+            android:textAlignment="viewEnd"
             android:textColor="#ffffff"
             android:textSize="14dp"
             tools:text="Don't Have an Account?" />

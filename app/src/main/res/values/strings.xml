@@ -33,4 +33,5 @@
     <string name="my_library">My Library</string>
     <string name="activity_history">Activity History</string>
     <string name="add_a_book">Add a book</string>
+    <string name="subtitle">Your Personal Book Catalogue.</string>
 </resources>
