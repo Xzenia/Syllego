@@ -26,7 +26,7 @@
             android:textColor="#ffffff"
             android:textSize="18dp"
             android:textStyle="bold" />
-        
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
@@ -81,16 +81,23 @@
             android:textSize="24dp" />
 
         <TextView
-            android:id="@+id/View_BookStatus"
+            android:id="@+id/View_NumberOfCopies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:background="@drawable/gradient"
             android:fontFamily="@font/exo_2_light"
-            android:text="Status"
+            android:text="Number of Copies Available: "
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
             android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/BorrowBookButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="borrowBook"
+            android:text="Borrow Book" />
 
     </LinearLayout>
 

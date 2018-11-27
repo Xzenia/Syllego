@@ -11,9 +11,21 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/ViewProfile"
+        android:enabled="true"
+        android:title="@string/view_profile"
+        android:visible="true" />
+
+    <item
         android:id="@+id/ShowHistory"
         android:enabled="true"
         android:title="@string/show_history"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/ViewTransaction"
+        android:enabled="true"
+        android:title="View Transactions"
         android:visible="true" />
 
     <item

@@ -25,8 +25,8 @@ public class EditBook extends AppCompatActivity {
     private EditText editBookAuthorField;
     private EditText editBookYearReleasedField;
     private EditText editBookISBNField;
+    private EditText editBookNumberOfCopiesField;
     private IntentIntegrator barCodeScan;
-    private RadioGroup editBookStatusRadioGroup;
 
     private Book selectedBook;
 
@@ -43,9 +43,7 @@ public class EditBook extends AppCompatActivity {
         editBookAuthorField = findViewById(R.id.Edit_BookAuthor);
         editBookYearReleasedField = findViewById(R.id.Edit_BookYearReleased);
         editBookISBNField = findViewById(R.id.Edit_ISBN);
-
-        editBookStatusRadioGroup = findViewById(R.id.Edit_ProgressRadioGroup);
-
+        editBookNumberOfCopiesField = findViewById(R.id.Edit_CopiesAvailable);
         bdc = new BookDataController();
         hdc = new HistoryDataController();
         Bundle data = getIntent().getExtras();
@@ -76,20 +74,7 @@ public class EditBook extends AppCompatActivity {
         editBookAuthorField.setText(selectedBook.getBookAuthor());
         editBookYearReleasedField.setText(selectedBook.getYearReleased());
         editBookISBNField.setText(selectedBook.getISBN());
-
-        switch(selectedBook.getStatus()){
-            case "Completed" :
-                editBookStatusRadioGroup.check(R.id.Edit_RadioButtonCompleted);
-                break;
-            case "Pending":
-                editBookStatusRadioGroup.check(R.id.Edit_RadioButtonPending);
-                break;
-            case "Dropped":
-                editBookStatusRadioGroup.check(R.id.Edit_RadioButtonDropped);
-                break;
-            default:
-                break;
-        }
+        editBookNumberOfCopiesField.setText(""+selectedBook.getNumberOfCopies());
     }
 
     public void editBook(View view){
@@ -123,10 +108,14 @@ public class EditBook extends AppCompatActivity {
             updatedBook.setISBN(editBookISBNField.getText().toString());
         }
 
+        if (editBookNumberOfCopiesField.getText().toString().isEmpty()){
+            errorStringBuilder.append("Copies Available field is empty!");
+        } else {
+            updatedBook.setNumberOfCopies(Integer.parseInt(editBookNumberOfCopiesField.getText().toString()));
+        }
+
         updatedBook.setBookID(selectedBook.getBookID());
         updatedBook.setUserID(selectedBook.getUserID());
-        RadioButton selectedRadioButton = findViewById(editBookStatusRadioGroup.getCheckedRadioButtonId());
-        updatedBook.setStatus(selectedRadioButton.getText().toString());
 
         if (errorStringBuilder.toString().equals("")) {
             bdc.editData(updatedBook);

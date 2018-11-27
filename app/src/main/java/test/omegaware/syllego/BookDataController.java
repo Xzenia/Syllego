@@ -1,6 +1,7 @@
 package test.omegaware.syllego;
 
 import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -9,6 +10,7 @@ public class BookDataController {
     private static final String TAG = "BookDataController";
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference bookReference = database.getReference("Book");
+
 
     public boolean addData(Book newBook){
         DatabaseReference childBookReference = bookReference.child("BookList").push();

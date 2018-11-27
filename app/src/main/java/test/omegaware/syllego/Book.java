@@ -1,10 +1,7 @@
 package test.omegaware.syllego;
 
-import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Book implements Serializable {
 
@@ -14,7 +11,7 @@ public class Book implements Serializable {
     private String BookAuthor = "";
     private String YearReleased = "";
     private String ISBN = "";
-    private String Status = "";
+    private int NumberOfCopies = 0;
 
     public String getBookID() {
         return BookID;
@@ -56,19 +53,19 @@ public class Book implements Serializable {
         this.ISBN = ISBN;
     }
 
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        Status = status;
-    }
-
     public String getUserID() {
         return UserID;
     }
 
     public void setUserID(String userID) {
         UserID = userID;
+    }
+
+    public int getNumberOfCopies() {
+        return NumberOfCopies;
+    }
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        NumberOfCopies = numberOfCopies;
     }
 }

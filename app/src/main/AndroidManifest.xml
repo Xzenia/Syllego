@@ -8,40 +8,50 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity
-            android:name=".LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddBook"
             android:theme="@style/Theme.AppCompat.Light" />
-
         <activity
             android:name=".ViewBook"
             android:theme="@style/Theme.AppCompat.Light" />
-
         <activity
             android:name=".EditBook"
             android:theme="@style/Theme.AppCompat.Light" />
-
-        <activity
-            android:name=".BookList"/>
-
+        <activity android:name=".BookList" />
         <activity
             android:name=".CreateAccountActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".DataHistory"
             android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ViewProfile"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".BorrowBook"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".BorrowerList"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".BooksBorrowedList"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <activity
+            android:name=".ReturnBook"
+            android:theme="@style/Theme.AppCompat.Light" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
 
     </application>
 

@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewBook extends AppCompatActivity {
 
@@ -16,7 +17,7 @@ public class ViewBook extends AppCompatActivity {
     private TextView viewBookAuthorField;
     private TextView viewBookYearReleasedField;
     private TextView viewBookISBNField;
-    private TextView viewBookStatusField;
+    private TextView viewBookNumberOfCopiesField;
     private Book selectedBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,7 @@ public class ViewBook extends AppCompatActivity {
         viewBookAuthorField = findViewById(R.id.View_BookAuthor);
         viewBookYearReleasedField = findViewById(R.id.View_BookYearReleased);
         viewBookISBNField = findViewById(R.id.View_BookISBN);
-        viewBookStatusField = findViewById(R.id.View_BookStatus);
-
+        viewBookNumberOfCopiesField = findViewById(R.id.View_NumberOfCopies);
         Bundle data = getIntent().getExtras();
 
         selectedBook = (Book) data.get("SelectedBook");
@@ -40,10 +40,10 @@ public class ViewBook extends AppCompatActivity {
 
     public void fillFields(Book selectedBook){
         viewBookNameField.setText(selectedBook.getBookName());
-        viewBookAuthorField.setText("Book Author: "+ selectedBook.getBookAuthor());
-        viewBookYearReleasedField.setText("Book Release Year: "+ selectedBook.getYearReleased());
-        viewBookISBNField.setText("Book ISBN: "+ selectedBook.getISBN());
-        viewBookStatusField.setText("Status: "+ selectedBook.getStatus());
+        viewBookAuthorField.setText("Author: "+ selectedBook.getBookAuthor());
+        viewBookYearReleasedField.setText("Release Year: "+ selectedBook.getYearReleased());
+        viewBookISBNField.setText("ISBN: "+ selectedBook.getISBN());
+        viewBookNumberOfCopiesField.setText("Copies Available: "+selectedBook.getNumberOfCopies());
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -58,6 +58,12 @@ public class ViewBook extends AppCompatActivity {
                 Intent editBookPage = new Intent(this, EditBook.class);
                 editBookPage.putExtra("SelectedBook", selectedBook);
                 startActivity(editBookPage);
+                return true;
+            case R.id.ViewBorrowersListItem:
+                Intent borrowersListActivity = new Intent(this, BorrowerList.class);
+                borrowersListActivity.putExtra("SelectedBook", selectedBook);
+                startActivity(borrowersListActivity);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -65,16 +71,33 @@ public class ViewBook extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent goToMainActivity = new Intent(this, BookList.class);
-        startActivity(goToMainActivity);
+        goToBookListActivity();
         this.finish();
     }
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent goToMainActivity = new Intent(this, BookList.class);
-        startActivity(goToMainActivity);
+        goToBookListActivity();
         this.finish();
         return true;
+    }
+
+    private void goToBookListActivity(){
+        Intent goToMainActivity = new Intent(this, BookList.class);
+        startActivity(goToMainActivity);
+    }
+
+    public void borrowBook(View view){
+        Intent goToBorrowBook = new Intent(this, BorrowBook.class);
+        goToBorrowBook.putExtra("SelectedBook",selectedBook);
+        if (selectedBook.getNumberOfCopies() >= 1){
+            startActivity(goToBorrowBook);
+        } else {
+            toastMessage("There are no copies available at the moment. Please try again later.");
+        }
+    }
+
+    public void toastMessage(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 }

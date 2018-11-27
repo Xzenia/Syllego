@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -21,8 +19,7 @@ public class AddBook extends AppCompatActivity {
     private EditText addBookYearReleasedField;
     private EditText addBookISBNField;
     private IntentIntegrator barCodeScan;
-
-    private RadioGroup addBookStatusRadioGroup;
+    private EditText copiesAvailableField;
 
     private BookDataController bdc;
 
@@ -46,10 +43,8 @@ public class AddBook extends AppCompatActivity {
         addBookAuthorField = findViewById(R.id.Add_BookAuthor);
         addBookYearReleasedField = findViewById(R.id.Add_BookYearReleased);
         addBookISBNField = findViewById(R.id.Add_ISBN);
-        addBookStatusRadioGroup = findViewById(R.id.Add_ProgressRadioGroup);
         inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField};
-        addBookStatusRadioGroup.check(R.id.Add_RadioButtonCompleted);
-
+        copiesAvailableField = findViewById(R.id.Add_CopiesAvailable);
         barCodeScan = new IntentIntegrator(this);
 
         getSupportActionBar().setTitle(R.string.add_a_book);
@@ -86,8 +81,12 @@ public class AddBook extends AppCompatActivity {
             newBook.setISBN(addBookISBNField.getText().toString());
         }
 
-        RadioButton selectedRadioButton = findViewById(addBookStatusRadioGroup.getCheckedRadioButtonId());
-        newBook.setStatus(selectedRadioButton.getText().toString());
+        if (copiesAvailableField.getText().toString().isEmpty()){
+            errorStringBuilder.append("Copies Available field is empty!");
+        } else {
+            newBook.setNumberOfCopies(Integer.parseInt(copiesAvailableField.getText().toString()));
+        }
+
         newBook.setUserID(UserID);
 
         if (errorStringBuilder.toString().equals("")) {
@@ -122,7 +121,6 @@ public class AddBook extends AppCompatActivity {
         for(EditText field: inputFields){
             field.setText("");
         }
-        addBookStatusRadioGroup.check(R.id.Add_RadioButtonCompleted);
     }
 
     public void toastMessage(String message){

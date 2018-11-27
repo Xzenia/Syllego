@@ -58,7 +58,7 @@ public class BookList extends AppCompatActivity {
     }
 
     private void initializeRecyclerView(){
-        Query query = databaseReference.orderByChild("userID").equalTo(userId);
+        Query query = databaseReference.orderByChild("userID");
         FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
 
         recyclerView.hasFixedSize();
@@ -137,9 +137,17 @@ public class BookList extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
+            case R.id.ViewProfile:
+                Intent viewProfile = new Intent(this, ViewProfile.class);
+                startActivity(viewProfile);
+                return true;
             case R.id.ShowHistory:
                 Intent historyActivity = new Intent(this, DataHistory.class);
                 startActivity(historyActivity);
+                return true;
+            case R.id.ViewTransaction:
+                Intent booksBorrowedActivity = new Intent(this, BooksBorrowedList.class);
+                startActivity(booksBorrowedActivity);
                 return true;
             case R.id.SignOutButton:
                 signOutUser();

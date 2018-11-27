@@ -51,6 +51,56 @@
         android:layout_margin="15dp">
 
         <TextView
+            android:id="@+id/FullNameHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Full Name:"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="14dp" />
+
+        <EditText
+            android:id="@+id/FullNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2_light"
+            android:hint="Full name"
+            android:inputType="textPersonName"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="20dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <TextView
+            android:id="@+id/DepartmentNameHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Department:"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="14dp" />
+
+        <EditText
+            android:id="@+id/DepartmentNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/roundrect"
+            android:ems="10"
+            android:fontFamily="@font/exo_2_light"
+            android:hint="Department"
+            android:inputType="textPersonName"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="20dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <TextView
             android:id="@+id/lblTitle8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +165,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="25dp" />
 
         <Button
             android:id="@+id/CreateAccountButton"
