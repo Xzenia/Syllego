@@ -20,7 +20,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class ReturnBook extends AppCompatActivity {
 
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private Transaction selectedTransaction;
     private TransactionDataController tdc;
     private IntentIntegrator barCodeScan;
@@ -106,7 +106,7 @@ public class ReturnBook extends AppCompatActivity {
         });
     }
 
-    public void sendToDatabase(){
+    private void sendToDatabase(){
         Intent booksBorrowedListActivity = new Intent(this, BooksBorrowedList.class);
         tdc.returnBook(selectedTransaction);
         bdc.editData(updatedBook);
@@ -132,7 +132,7 @@ public class ReturnBook extends AppCompatActivity {
         startActivity(booksBorrowedListActivity);
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

@@ -3,7 +3,6 @@ package test.omegaware.syllego;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -103,12 +102,12 @@ public class BorrowerList extends AppCompatActivity {
         mRecyclerAdapter.stopListening();
     }
 
-    public void showProgressBar(){
+    private void showProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 
-    public void hideProgressBar(){
+    private void hideProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
@@ -123,12 +122,12 @@ public class BorrowerList extends AppCompatActivity {
         this.finish();
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     public static class TransactionListViewHolder extends RecyclerView.ViewHolder {
-        View mView;
+        final View mView;
         public TransactionListViewHolder(View itemView) {
             super(itemView);
             mView = itemView;

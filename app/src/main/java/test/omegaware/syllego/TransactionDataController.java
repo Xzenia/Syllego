@@ -11,9 +11,9 @@ import java.util.Date;
 public class TransactionDataController {
 
     private static final String TAG = "TransactionDataController";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference transactionReference = database.getReference("Transaction");
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference transactionReference = database.getReference("Transaction");
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     public void borrowBook(Transaction transaction){
         DatabaseReference borrowReference = transactionReference.push();

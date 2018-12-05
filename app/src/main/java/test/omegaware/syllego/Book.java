@@ -1,6 +1,5 @@
 package test.omegaware.syllego;
 
-
 import java.io.Serializable;
 
 public class Book implements Serializable {

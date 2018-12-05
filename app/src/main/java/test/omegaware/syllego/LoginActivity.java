@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    public void goToBookList(){
+    private void goToBookList(){
         Intent goToBookList = new Intent(this, BookList.class);
         startActivity(goToBookList);
     }
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         toastMessage(getString(R.string.no_connection_error));
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 

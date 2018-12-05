@@ -3,7 +3,6 @@ package test.omegaware.syllego;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,7 +36,6 @@ public class ViewReports extends AppCompatActivity {
     private FirebaseRecyclerAdapter mRecyclerAdapter;
     private FirebaseAuth firebaseAuth;
     private ProgressBar firebaseLoadingProgressBar;
-    private String userId;
     private RecyclerView recyclerView;
     private TextView dateTextView;
     private Date date;
@@ -49,9 +47,7 @@ public class ViewReports extends AppCompatActivity {
         setContentView(R.layout.activity_view_reports);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        userId = firebaseAuth.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList");
-
         firebaseLoadingProgressBar = findViewById(R.id.ViewReports_FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BooksAddedList);
         dateTextView = findViewById(R.id.DateTextView);
@@ -159,12 +155,12 @@ public class ViewReports extends AppCompatActivity {
         mRecyclerAdapter.stopListening();
     }
 
-    public void showProgressBar(){
+    private void showProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 
-    public void hideProgressBar(){
+    private void hideProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
@@ -179,7 +175,7 @@ public class ViewReports extends AppCompatActivity {
         this.finish();
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

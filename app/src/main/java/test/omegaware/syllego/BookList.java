@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,7 +36,6 @@ public class BookList extends AppCompatActivity {
     private FirebaseRecyclerAdapter mRecyclerAdapter;
     private FirebaseAuth firebaseAuth;
     private ProgressBar firebaseLoadingProgressBar;
-    private String userId;
     private RecyclerView recyclerView;
     private SearchView searchView;
 
@@ -48,7 +46,6 @@ public class BookList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
-        userId = firebaseAuth.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList");
 
         firebaseLoadingProgressBar = findViewById(R.id.FirebaseLoadingProgressBar);
@@ -66,7 +63,7 @@ public class BookList extends AppCompatActivity {
         recyclerView.setAdapter(mRecyclerAdapter);
     }
 
-    public void queryList(String search){
+    private void queryList(String search){
         Query query = databaseReference.orderByChild("bookName").startAt(search).endAt(search+"\uf8ff");
         FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
 
@@ -119,17 +116,17 @@ public class BookList extends AppCompatActivity {
         mRecyclerAdapter.stopListening();
     }
 
-    public void showProgressBar(){
+    private void showProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 
-    public void hideProgressBar(){
+    private void hideProgressBar(){
         firebaseLoadingProgressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
-    public void goToViewBook(Book book){
+    private void goToViewBook(Book book){
         Intent viewBook = new Intent(this, ViewBook.class);
         viewBook.putExtra("SelectedBook",book);
         startActivity(viewBook);
@@ -194,11 +191,11 @@ public class BookList extends AppCompatActivity {
         }
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    public void signOutUser(){
+    private void signOutUser(){
         Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(loginPage);
         firebaseAuth.signOut();
@@ -226,7 +223,7 @@ public class BookList extends AppCompatActivity {
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {
-        View mView;
+        final View mView;
         public BookListViewHolder(View itemView) {
             super(itemView);
             mView = itemView;

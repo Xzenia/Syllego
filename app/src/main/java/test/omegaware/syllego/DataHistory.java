@@ -3,7 +3,6 @@ package test.omegaware.syllego;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -99,12 +98,12 @@ public class DataHistory extends AppCompatActivity {
         mRecyclerAdapter.stopListening();
     }
 
-    public void showProgressBar(){
+    private void showProgressBar(){
         dataHistoryLoadingProgressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 
-    public void hideProgressBar(){
+    private void hideProgressBar(){
         dataHistoryLoadingProgressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
@@ -119,7 +118,7 @@ public class DataHistory extends AppCompatActivity {
     }
 
     public static class DataHistoryListViewHolder extends RecyclerView.ViewHolder {
-        View mView;
+        final View mView;
         public DataHistoryListViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -134,7 +133,7 @@ public class DataHistory extends AppCompatActivity {
         }
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

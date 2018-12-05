@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -143,7 +142,7 @@ public class BooksBorrowedList extends AppCompatActivity {
 
     //TODO: Might have a separate layout and view holder for listing books borrowed by the user.
     public static class TransactionListViewHolder extends RecyclerView.ViewHolder {
-        View mView;
+        final View mView;
         public TransactionListViewHolder(View itemView) {
             super(itemView);
             mView = itemView;

@@ -28,9 +28,10 @@ public class ViewProfile extends AppCompatActivity {
     private TextView numberOfBooksBorrowedTextView;
     private TextView numberOfBooksReturnedTextView;
 
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference userReference = database.getReference("User").child("UserList");
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference userReference = database.getReference("User").child("UserList");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class ViewProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void retrieveProfileData(){
+    private void retrieveProfileData(){
         Query profileQuery = userReference.orderByChild("userId").equalTo(firebaseAuth.getCurrentUser().getUid());
         profileQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -100,7 +101,7 @@ public class ViewProfile extends AppCompatActivity {
         return true;
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

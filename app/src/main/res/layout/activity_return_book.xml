@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:background="#003b4d"
             android:fontFamily="@font/exo_2_light"
-            android:onClick="startScanActivity"
+            android:onClick="getManualInput"
             android:text="Return Using Manual Input"
             android:textAllCaps="false"
             android:textColor="#ffffff"

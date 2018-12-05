@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 public class BorrowBook extends AppCompatActivity {
 
-    TextView numberOfCopiesLabel;
-    EditText numberOfCopiesToBorrowField;
-    Book selectedBook;
-    TransactionDataController tdc;
-    BookDataController bdc;
-    int numberOfCopiesToBorrow;
+    private TextView numberOfCopiesLabel;
+    private EditText numberOfCopiesToBorrowField;
+    private Book selectedBook;
+    private TransactionDataController tdc;
+    private BookDataController bdc;
+    private int numberOfCopiesToBorrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,7 @@ public class BorrowBook extends AppCompatActivity {
         }
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 

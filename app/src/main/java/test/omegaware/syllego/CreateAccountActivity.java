@@ -99,7 +99,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 

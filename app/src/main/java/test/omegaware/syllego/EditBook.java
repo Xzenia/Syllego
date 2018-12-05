@@ -10,8 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -69,7 +67,7 @@ public class EditBook extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void fillFields(){
+    private void fillFields(){
         editBookNameField.setText(selectedBook.getBookName());
         editBookAuthorField.setText(selectedBook.getBookAuthor());
         editBookYearReleasedField.setText(selectedBook.getYearReleased());
@@ -77,7 +75,7 @@ public class EditBook extends AppCompatActivity {
         editBookNumberOfCopiesField.setText(""+selectedBook.getNumberOfCopies());
     }
 
-    public void editBook(View view){
+    private void editBook(View view){
         Book updatedBook = new Book();
         StringBuilder errorStringBuilder = new StringBuilder();
 
@@ -171,14 +169,15 @@ public class EditBook extends AppCompatActivity {
         }
     }
 
-    public void deleteItem(){
+    private void deleteItem(){
         bdc.deleteData(selectedBook.getBookID());
         Intent goToMainActivity = new Intent (this, BookList.class);
         toastMessage("Book entry deleted!");
         hdc.addToHistory("You've deleted "+selectedBook.getBookName()+" from your catalogue!");
         startActivity(goToMainActivity);
     }
-    public void goToViewBook(Book updatedBook) {
+
+    private void goToViewBook(Book updatedBook) {
         Intent goToViewBook = new Intent(this, ViewBook.class);
         goToViewBook.putExtra("SelectedBook", updatedBook);
         startActivity(goToViewBook);
@@ -196,7 +195,7 @@ public class EditBook extends AppCompatActivity {
         this.finish();
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

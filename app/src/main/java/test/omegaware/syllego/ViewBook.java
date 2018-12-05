@@ -39,7 +39,7 @@ public class ViewBook extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void fillFields(Book selectedBook){
+    private void fillFields(Book selectedBook){
         viewBookNameField.setText(selectedBook.getBookName());
         viewBookAuthorField.setText("Author: "+ selectedBook.getBookAuthor());
         viewBookYearReleasedField.setText("Release Year: "+ selectedBook.getYearReleased());
@@ -104,7 +104,7 @@ public class ViewBook extends AppCompatActivity {
         toastMessage("ISBN copied to clipboard!");
     }
 
-    public void toastMessage(String message){
+    private void toastMessage(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 }

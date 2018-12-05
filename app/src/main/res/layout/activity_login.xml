@@ -11,13 +11,13 @@
         android:id="@+id/VersionLabel"
         android:layout_width="116dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:fontFamily="@font/exo_2_light"
-        android:text="Ver. 0.9.5"
+        android:text="Ver. 1.4"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="14dp"
-        tools:text="Ver. 0.9.5" />
+        tools:text="Ver. 1.4" />
 
     <Button
         android:id="@+id/LoginButton"
@@ -29,11 +29,11 @@
         android:background="#00000000"
         android:fontFamily="@font/exo_2"
         android:onClick="LoginUser"
-        android:text="Start Booking!"
+        android:text="Login!"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="24dp"
-        tools:text="Start Booking!" />
+        tools:text="Login!" />
 
     <TextView
         android:id="@+id/SubtitleLabel"
@@ -62,12 +62,12 @@
         tools:text="Syllego" />
 
     <LinearLayout
-        android:layout_width="279dp"
+        android:layout_width="match_parent"
         android:layout_height="168dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10px"
-        android:layout_marginRight="10px"
+        android:layout_marginLeft="200px"
+        android:layout_marginTop="217dp"
         android:layout_marginBottom="217dp"
         android:orientation="vertical">
 
@@ -75,8 +75,6 @@
             android:id="@+id/EmailAddressLabel"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_above="@+id/UsernameEditText"
-            android:layout_alignStart="@+id/UsernameEditText"
             android:layout_marginBottom="-246dp"
             android:fontFamily="@font/exo_2_light"
             android:gravity="center"
@@ -90,8 +88,6 @@
             android:id="@+id/UsernameEditText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="246dp"
             android:background="@drawable/roundrect"
             android:ems="10"
@@ -111,8 +107,6 @@
             android:id="@+id/PasswordLabel"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_above="@+id/UsernameEditText"
-            android:layout_alignStart="@+id/UsernameEditText"
             android:layout_marginBottom="-246dp"
             android:fontFamily="@font/exo_2_light"
             android:gravity="center"
