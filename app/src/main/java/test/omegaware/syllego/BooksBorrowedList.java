@@ -56,8 +56,6 @@ public class BooksBorrowedList extends AppCompatActivity {
 
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this, 1);
-        recyclerView.addItemDecoration(decoration);
 
         mRecyclerAdapter = new FirebaseRecyclerAdapter<Transaction, BooksBorrowedList.TransactionListViewHolder>(transactionsOptions) {
             @Override

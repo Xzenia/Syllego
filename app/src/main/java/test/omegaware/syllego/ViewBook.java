@@ -1,5 +1,6 @@
 package test.omegaware.syllego;
 
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 
 public class ViewBook extends AppCompatActivity {
 
-    private static final String TAG = "ViewBook";
+    private final String TAG = "ViewBook";
     private TextView viewBookNameField;
     private TextView viewBookAuthorField;
     private TextView viewBookYearReleasedField;
@@ -95,6 +96,12 @@ public class ViewBook extends AppCompatActivity {
         } else {
             toastMessage("There are no copies available at the moment. Please try again later.");
         }
+    }
+
+    public void setIsbnToClipboard(View view){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        clipboard.setText(selectedBook.getISBN());
+        toastMessage("ISBN copied to clipboard!");
     }
 
     public void toastMessage(String message){

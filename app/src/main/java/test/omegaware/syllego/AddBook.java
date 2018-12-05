@@ -11,6 +11,10 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddBook extends AppCompatActivity {
 
     private static final String TAG = "AddBook";
@@ -27,15 +31,14 @@ public class AddBook extends AppCompatActivity {
 
     private EditText[] inputFields;
 
-    private String UserID;
-
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
         Bundle getUserId = getIntent().getExtras();
-        UserID = (String) getUserId.get("UserID");
+        username = (String) getUserId.get("Username");
         bdc = new BookDataController();
         hdc = new HistoryDataController();
 
@@ -53,6 +56,9 @@ public class AddBook extends AppCompatActivity {
 
     public void addBook(View view){
         Book newBook = new Book();
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy");
+        SimpleDateFormat reportsDateFormat = new SimpleDateFormat("MMM yyyy");
         StringBuilder errorStringBuilder = new StringBuilder();
         if (addBookNameField.getText().toString().isEmpty()){
             errorStringBuilder.append(getString(R.string.BookNameEmptyError));
@@ -87,7 +93,9 @@ public class AddBook extends AppCompatActivity {
             newBook.setNumberOfCopies(Integer.parseInt(copiesAvailableField.getText().toString()));
         }
 
-        newBook.setUserID(UserID);
+        newBook.setUsername(username);
+        newBook.setDateAdded(dateFormat.format(date));
+        newBook.setFilterDateAdded(reportsDateFormat.format(date));
 
         if (errorStringBuilder.toString().equals("")) {
             bdc.addData(newBook);

@@ -5,13 +5,23 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-    private String UserID = "";
+    private String Username = "";
     private String BookID = "";
     private String BookName = "";
     private String BookAuthor = "";
     private String YearReleased = "";
     private String ISBN = "";
     private int NumberOfCopies = 0;
+    private String DateAdded;
+    private String FilterDateAdded;
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
 
     public String getBookID() {
         return BookID;
@@ -53,19 +63,27 @@ public class Book implements Serializable {
         this.ISBN = ISBN;
     }
 
-    public String getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(String userID) {
-        UserID = userID;
-    }
-
     public int getNumberOfCopies() {
         return NumberOfCopies;
     }
 
     public void setNumberOfCopies(int numberOfCopies) {
         NumberOfCopies = numberOfCopies;
+    }
+
+    public String getDateAdded() {
+        return DateAdded;
+    }
+
+    public void setDateAdded(String dateAdded) {
+        DateAdded = dateAdded;
+    }
+
+    public String getFilterDateAdded() {
+        return FilterDateAdded;
+    }
+
+    public void setFilterDateAdded(String filterDateAdded) {
+        FilterDateAdded = filterDateAdded;
     }
 }

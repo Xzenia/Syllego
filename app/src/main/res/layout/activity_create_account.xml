@@ -68,6 +68,8 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="Full name"
             android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />
 
@@ -93,6 +95,8 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="Department"
             android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />
 
@@ -118,6 +122,8 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="Email"
             android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />
 
@@ -143,6 +149,8 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="Password"
             android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />
 
@@ -160,6 +168,8 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="Confirm Password"
             android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp" />
 

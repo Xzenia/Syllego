@@ -19,17 +19,18 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_bright"
             android:fontFamily="@font/exo_2_light"
+            android:paddingTop="6dp"
             android:text="View Book"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
-            android:textSize="18dp"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="27dp" />
 
         <TextView
             android:id="@+id/View_BookName"
@@ -38,20 +39,27 @@
             android:layout_weight="0.2"
             android:background="#ad41beff"
             android:fontFamily="@font/exo_2_light"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="Book Name"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
-            android:textSize="34dp"
+            android:textSize="32dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/View_BookAuthor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="5dp"
             android:layout_weight="0.28"
             android:background="#ad048dd5"
             android:fontFamily="@font/exo_2_light"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="Book Author"
+            android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
             android:textSize="24dp" />
@@ -59,11 +67,15 @@
         <TextView
             android:id="@+id/View_BookYearReleased"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
             android:layout_weight="0.3"
             android:background="#bb13aeff"
             android:fontFamily="@font/exo_2_light"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="Year Released"
+            android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
             android:textSize="24dp" />
@@ -71,23 +83,33 @@
         <TextView
             android:id="@+id/View_BookISBN"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="9dp"
             android:layout_weight="0.2"
-            android:background="#bb0f7eb8"
+            android:background="#006080"
             android:fontFamily="@font/exo_2_light"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="ISBN"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
-            android:textSize="24dp" />
+            android:textSize="20dp"
+            android:onClick="setIsbnToClipboard"/>
 
         <TextView
             android:id="@+id/View_NumberOfCopies"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
             android:layout_weight="0.5"
-            android:background="@drawable/gradient"
+            android:background="#009ccc"
             android:fontFamily="@font/exo_2_light"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="Number of Copies Available: "
+            android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
             android:textSize="24dp" />
@@ -96,8 +118,13 @@
             android:id="@+id/BorrowBookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#003b4d"
+            android:fontFamily="@font/exo_2_light"
             android:onClick="borrowBook"
-            android:text="Borrow Book" />
+            android:text="Borrow Book"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="24dp" />
 
     </LinearLayout>
 

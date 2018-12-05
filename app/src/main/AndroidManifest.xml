@@ -43,10 +43,13 @@
         <activity
             android:name=".BooksBorrowedList"
             android:theme="@style/Theme.AppCompat.Light" />
-
         <activity
             android:name=".ReturnBook"
             android:theme="@style/Theme.AppCompat.Light" />
+
+        <activity
+            android:name=".ViewReports"
+            android:theme="@style/Theme.AppCompat.Light"/>
 
         <meta-data
             android:name="preloaded_fonts"

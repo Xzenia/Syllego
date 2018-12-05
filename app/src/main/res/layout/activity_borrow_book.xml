@@ -17,20 +17,41 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="30dp" />
 
         <TextView
-            android:id="@+id/NumberOfCopiesLeftTextView"
+            android:id="@+id/numberOfCopiesLeftTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Number of Copies Left: "
-            android:textSize="24sp"
+            android:fontFamily="@font/exo_2_light"
+            android:paddingTop="6dp"
+            android:text="BORROW A BOOK"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="83dp"
             tools:layout_editor_absoluteY="163dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="52dp" />
+
+        <TextView
+            android:id="@+id/NumberOfCopiesLeftTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2_light"
+            android:text="Number of Copies Left: "
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="163dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="38dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,38 +61,56 @@
                 android:id="@+id/PreviousValueButton"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:background="#003b4d"
                 android:onClick="decreaseValue"
-                android:text="-" />
+                android:text="-"
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
 
             <EditText
                 android:id="@+id/CopiesToBorrowField"
-                android:layout_width="wrap_content"
+                android:layout_width="238dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:focusable="false"
                 android:clickable="false"
                 android:ems="10"
-                android:inputType="none" />
+                android:focusable="false"
+                android:fontFamily="@font/exo_2_light"
+                android:inputType="none"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:text="0" />
 
             <Button
                 android:id="@+id/NextValueButton"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:background="#003b4d"
                 android:onClick="addValue"
-                android:text="+" />
+                android:text="+"
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
         </LinearLayout>
 
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="55dp" />
 
         <Button
             android:id="@+id/BorrowBookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#003b4d"
+            android:fontFamily="@font/exo_2_light"
             android:onClick="processTransaction"
-            android:text="Borrow Book" />
+            android:text="Borrow Book"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
 
     </LinearLayout>
 

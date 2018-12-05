@@ -6,6 +6,8 @@ public class User {
     private String userId;
     private int numberOfBooksBorrowed;
     private int numberOfBooksReturned;
+    private String latestBookBorrowed;
+    private String latestBookReturned;
 
     public String getName() {
         return name;
@@ -48,4 +50,19 @@ public class User {
     }
 
 
+    public String getLatestBookBorrowed() {
+        return latestBookBorrowed;
+    }
+
+    public void setLatestBookBorrowed(String latestBookBorrowed) {
+        this.latestBookBorrowed = latestBookBorrowed;
+    }
+
+    public String getLatestBookReturned() {
+        return latestBookReturned;
+    }
+
+    public void setLatestBookReturned(String latestBookReturned) {
+        this.latestBookReturned = latestBookReturned;
+    }
 }

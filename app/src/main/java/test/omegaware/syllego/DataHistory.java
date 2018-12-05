@@ -57,8 +57,6 @@ public class DataHistory extends AppCompatActivity {
 
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this, 1);
-        recyclerView.addItemDecoration(decoration);
 
         mRecyclerAdapter = new FirebaseRecyclerAdapter<History, DataHistory.DataHistoryListViewHolder>(historyOptions) {
             @Override

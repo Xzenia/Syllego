@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +26,7 @@ public class ViewProfile extends AppCompatActivity {
     private TextView fullNameTextView;
     private TextView departmentTextView;
     private TextView numberOfBooksBorrowedTextView;
-    private TextView numberofBooksReturnedTextView;
+    private TextView numberOfBooksReturnedTextView;
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -36,7 +39,7 @@ public class ViewProfile extends AppCompatActivity {
         fullNameTextView = findViewById(R.id.FullNameTextView);
         departmentTextView = findViewById(R.id.DepartmentTextView);
         numberOfBooksBorrowedTextView = findViewById(R.id.NumberOfBooksBorrowedTextView);
-        numberofBooksReturnedTextView = findViewById(R.id.NumberOfBooksReturnedTextView);
+        numberOfBooksReturnedTextView = findViewById(R.id.NumberOfBooksReturnedTextView);
 
         retrieveProfileData();
         getSupportActionBar().setTitle("My Profile");
@@ -55,7 +58,7 @@ public class ViewProfile extends AppCompatActivity {
                         fullNameTextView.setText("Name: " + profileData.getName());
                         departmentTextView.setText("Department: " + profileData.getDepartment());
                         numberOfBooksBorrowedTextView.setText("Number of Books Borrowed: " + profileData.getNumberOfBooksBorrowed());
-                        numberofBooksReturnedTextView.setText("Number of Books Returned: " + profileData.getNumberOfBooksReturned());
+                        numberOfBooksReturnedTextView.setText("Number of Books Returned: " + profileData.getNumberOfBooksReturned());
                     }
                 }
             }
@@ -66,6 +69,25 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.viewprofile_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.ShowHistory:
+                Intent historyActivity = new Intent(this, DataHistory.class);
+                startActivity(historyActivity);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 
     @Override
     public void onBackPressed(){

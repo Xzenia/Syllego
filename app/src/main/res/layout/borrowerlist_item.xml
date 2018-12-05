@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/roundrect">
+    android:layout_marginTop="4dp"
+    android:background="@drawable/roundrect"
+    android:orientation="vertical">
 
 
     <TextView
@@ -11,9 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2"
+        android:paddingLeft="5dp"
+        android:paddingTop="4dp"
         android:text="Borrower's Name"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="#003b4d"
         android:textSize="24sp" />
 
     <Space
@@ -22,11 +25,13 @@
 
     <TextView
         android:id="@+id/TransactionDateTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#003b4d"
         android:fontFamily="@font/exo_2"
+        android:paddingLeft="5dp"
         android:text="Transaction Date"
-        android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <Space
@@ -39,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2"
+        android:paddingLeft="5dp"
         android:text="Copies Borrowed: 2"
         android:textColor="@color/common_google_signin_btn_text_light_pressed"
         android:textSize="16sp" />
@@ -52,10 +58,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2"
+        android:paddingLeft="5dp"
         android:text="Borrowing"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
 
 </LinearLayout>

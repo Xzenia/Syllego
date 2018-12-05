@@ -11,7 +11,6 @@ public class BookDataController {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference bookReference = database.getReference("Book");
 
-
     public boolean addData(Book newBook){
         DatabaseReference childBookReference = bookReference.child("BookList").push();
         newBook.setBookID(childBookReference.getKey());

@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class BookList extends AppCompatActivity {
     private ProgressBar firebaseLoadingProgressBar;
     private String userId;
     private RecyclerView recyclerView;
+    private SearchView searchView;
 
     private boolean doubleBackToExitPressedOnce = false;
     @Override
@@ -51,20 +53,22 @@ public class BookList extends AppCompatActivity {
 
         firebaseLoadingProgressBar = findViewById(R.id.FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BookContentList);
-        showProgressBar();
-        initializeRecyclerView();
 
         getSupportActionBar().setTitle(R.string.my_library);
+
+
     }
 
     private void initializeRecyclerView(){
-        Query query = databaseReference.orderByChild("userID");
-        FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
-
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this, 1);
-        recyclerView.addItemDecoration(decoration);
+        queryList("");
+        recyclerView.setAdapter(mRecyclerAdapter);
+    }
+
+    public void queryList(String search){
+        Query query = databaseReference.orderByChild("bookName").startAt(search).endAt(search+"\uf8ff");
+        FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
 
         mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, BookListViewHolder>(booksOptions) {
             @Override
@@ -101,11 +105,13 @@ public class BookList extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(mRecyclerAdapter);
+        mRecyclerAdapter.startListening();
     }
 
     public void onStart(){
         super.onStart();
-        mRecyclerAdapter.startListening();
+        showProgressBar();
+        initializeRecyclerView();
     }
 
     public void onStop(){
@@ -132,6 +138,28 @@ public class BookList extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.mainactivity_menu,menu);
+
+        MenuItem item = menu.findItem(R.id.SearchItem);
+        searchView = (SearchView)item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                queryList(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                queryList(newText);
+                return false;
+            }
+        });
+
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -154,8 +182,12 @@ public class BookList extends AppCompatActivity {
                 return true;
             case R.id.AddItem:
                 Intent addBookPage = new Intent(this, AddBook.class);
-                addBookPage.putExtra("UserID", userId);
+                addBookPage.putExtra("Username", firebaseAuth.getCurrentUser().getDisplayName());
                 startActivity(addBookPage);
+                return true;
+            case R.id.ViewReports:
+                Intent viewReportsActivity = new Intent(this, ViewReports.class);
+                startActivity(viewReportsActivity);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -187,6 +219,10 @@ public class BookList extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+        }
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {

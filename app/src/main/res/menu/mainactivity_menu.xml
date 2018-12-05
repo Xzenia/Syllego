@@ -3,12 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/SearchItem"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
+    <item
         android:id="@+id/AddItem"
         android:enabled="true"
-        android:icon="@drawable/ic_action_new"
-        android:title="Item"
-        android:visible="true"
-        app:showAsAction="always" />
+        android:title="Add a new book"
+        android:visible="true" />
 
     <item
         android:id="@+id/ViewProfile"
@@ -16,16 +20,17 @@
         android:title="@string/view_profile"
         android:visible="true" />
 
-    <item
-        android:id="@+id/ShowHistory"
-        android:enabled="true"
-        android:title="@string/show_history"
-        android:visible="true" />
 
     <item
         android:id="@+id/ViewTransaction"
         android:enabled="true"
         android:title="View Transactions"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/ViewReports"
+        android:enabled="true"
+        android:title="View Reports"
         android:visible="true" />
 
     <item

@@ -115,7 +115,7 @@ public class EditBook extends AppCompatActivity {
         }
 
         updatedBook.setBookID(selectedBook.getBookID());
-        updatedBook.setUserID(selectedBook.getUserID());
+        updatedBook.setUsername(selectedBook.getUsername());
 
         if (errorStringBuilder.toString().equals("")) {
             bdc.editData(updatedBook);

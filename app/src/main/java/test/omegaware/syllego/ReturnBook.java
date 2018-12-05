@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +20,15 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class ReturnBook extends AppCompatActivity {
 
-    private Transaction selectedTransaction;
-    private IntentIntegrator barCodeScan;
-    private TextView copiesBorrowedTextView;
-    private TransactionDataController tdc;
-    private BookDataController bdc;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private Transaction selectedTransaction;
+    private TransactionDataController tdc;
+    private IntentIntegrator barCodeScan;
+    private BookDataController bdc;
     private Book updatedBook;
+
+    private TextView copiesBorrowedTextView;
+    private EditText isbnTextField;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class ReturnBook extends AppCompatActivity {
         barCodeScan = new IntentIntegrator(this);
         copiesBorrowedTextView = findViewById(R.id.ReturnBook_CopiesBorrowedTextView);
         copiesBorrowedTextView.setText("Copies Borrowed: "+selectedTransaction.getNumberOfBooksBorrowed());
+
+        isbnTextField = findViewById(R.id.Return_ISBN);
 
         tdc = new TransactionDataController();
         bdc = new BookDataController();
@@ -62,6 +67,18 @@ public class ReturnBook extends AppCompatActivity {
                 e.printStackTrace();
                 toastMessage(result.getContents());
             }
+        }
+    }
+
+    public void getManualInput(View view){
+        if (!isbnTextField.getText().toString().matches("")){
+            if (isbnTextField.getText().toString().matches(selectedTransaction.getBookIsbn())){
+                processTransaction();
+            } else {
+                toastMessage("ISBN entered does not match with saved record. Please try again.");
+            }
+        } else {
+            toastMessage("ISBN text field is empty! Please enter the book's ISBN and try again.");
         }
     }
 

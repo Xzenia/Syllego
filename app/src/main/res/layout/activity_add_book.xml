@@ -19,13 +19,14 @@
             android:layout_height="50dp"
             android:fontFamily="@font/exo_2_light"
             android:gravity="center"
+            android:paddingTop="6dp"
             android:text="@string/add_a_book_message"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
-            tools:text="ADD A BOOK" />
+            tools:text="Add a Book" />
 
 
         <AutoCompleteTextView
@@ -35,8 +36,9 @@
             android:background="@drawable/roundrect"
             android:fontFamily="@font/exo_2_light"
             android:hint="Book Name"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="16sp" />
+            android:paddingLeft="10dp"
+            android:textColor="#0e0e0e"
+            android:textSize="18dp" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -50,8 +52,9 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="@string/author"
             android:inputType="text"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="16sp" />
+            android:paddingLeft="10dp"
+            android:textColor="#0e0e0e"
+            android:textSize="18dp" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -65,8 +68,9 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="@string/year_released"
             android:inputType="number"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="16sp" />
+            android:paddingLeft="10dp"
+            android:textColor="#0e0e0e"
+            android:textSize="18dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -86,8 +90,9 @@
                 android:fontFamily="@font/exo_2_light"
                 android:hint="@string/isbn"
                 android:inputType="text"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="16sp" />
+                android:paddingLeft="10dp"
+                android:textColor="#0e0e0e"
+                android:textSize="18dp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -95,13 +100,14 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="wrap_content"
+                android:layout_width="358dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:background="#6affffff"
+                android:background="#003b4d"
                 android:fontFamily="@font/exo_2_light"
                 android:onClick="startScanActivity"
                 android:text="@string/scan_bar_code"
+                android:textAllCaps="false"
                 android:textColor="#ffffff"
                 android:textSize="24dp" />
 
@@ -109,7 +115,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="21dp" />
 
         <EditText
             android:id="@+id/Add_CopiesAvailable"
@@ -120,21 +126,23 @@
             android:fontFamily="@font/exo_2_light"
             android:hint="@string/copies_available"
             android:inputType="text"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="16sp" />
+            android:paddingLeft="10dp"
+            android:textColor="#0e0e0e"
+            android:textSize="18dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="15dp" />
 
         <Button
             android:id="@+id/ConfirmButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#6affffff"
+            android:background="#003b4d"
             android:fontFamily="@font/exo_2_light"
             android:onClick="addBook"
             android:text="@string/add_book"
+            android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="24dp" />
 
