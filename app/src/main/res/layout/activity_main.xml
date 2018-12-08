@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".BookList">
 
-
     <ProgressBar
         android:id="@+id/FirebaseLoadingProgressBar"
         style="?android:attr/progressBarStyle"

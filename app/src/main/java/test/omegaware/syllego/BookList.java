@@ -52,8 +52,6 @@ public class BookList extends AppCompatActivity {
         recyclerView = findViewById(R.id.BookContentList);
 
         getSupportActionBar().setTitle(R.string.my_library);
-
-
     }
 
     private void initializeRecyclerView(){

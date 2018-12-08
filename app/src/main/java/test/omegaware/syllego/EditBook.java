@@ -75,7 +75,7 @@ public class EditBook extends AppCompatActivity {
         editBookNumberOfCopiesField.setText(""+selectedBook.getNumberOfCopies());
     }
 
-    private void editBook(View view){
+    public void editBook(View view){
         Book updatedBook = new Book();
         StringBuilder errorStringBuilder = new StringBuilder();
 

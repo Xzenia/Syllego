@@ -57,7 +57,7 @@ public class AddBook extends AppCompatActivity {
     public void addBook(View view){
         Book newBook = new Book();
         Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
         SimpleDateFormat reportsDateFormat = new SimpleDateFormat("MMM yyyy");
         StringBuilder errorStringBuilder = new StringBuilder();
         if (addBookNameField.getText().toString().isEmpty()){

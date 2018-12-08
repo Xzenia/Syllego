@@ -39,8 +39,6 @@ public class ViewProfile extends AppCompatActivity {
 
         fullNameTextView = findViewById(R.id.FullNameTextView);
         departmentTextView = findViewById(R.id.DepartmentTextView);
-        numberOfBooksBorrowedTextView = findViewById(R.id.NumberOfBooksBorrowedTextView);
-        numberOfBooksReturnedTextView = findViewById(R.id.NumberOfBooksReturnedTextView);
 
         retrieveProfileData();
         getSupportActionBar().setTitle("My Profile");
@@ -87,9 +85,6 @@ public class ViewProfile extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
     @Override
     public void onBackPressed(){
         this.finish();
