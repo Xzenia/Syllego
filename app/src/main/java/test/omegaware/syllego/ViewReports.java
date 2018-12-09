@@ -34,6 +34,7 @@ import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -52,8 +53,6 @@ public class ViewReports extends AppCompatActivity {
     private Date dateEnd;
     private Calendar calendar;
     private DateFormat searchDateFormat;
-
-    private final String[] semesterLabels = new String[]{ "1st Semester", "Summer Semester", "2nd Semester"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,19 +180,19 @@ public class ViewReports extends AppCompatActivity {
         mRecyclerAdapter.startListening();
     }
 
-    public void filterBySemester(String selectedItem){
+    public void filterBySemester(String selectedItem, int year){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
 
         if (selectedItem.matches("2nd Semester")){
-            setDateStartAndDateEnd(0,3);
+            setDateStartAndDateEnd(0,3, year);
         }
 
         else if (selectedItem.matches("Summer Semester")){
-            setDateStartAndDateEnd(4, 7);
+            setDateStartAndDateEnd(4, 7, year);
         }
 
         else if (selectedItem.matches("1st Semester")) {
-            setDateStartAndDateEnd(8,11);
+            setDateStartAndDateEnd(8,11, year);
         }
 
         Query semesterQuery = databaseReference.orderByChild("dateAdded").startAt(dateFormat.format(dateStart)).endAt(dateFormat.format(dateEnd)+"\uf8ff");
@@ -235,12 +234,12 @@ public class ViewReports extends AppCompatActivity {
         mRecyclerAdapter.startListening();
     }
 
-    public void setDateStartAndDateEnd(int startMonth, int endMonth){
-        Calendar temp = (Calendar) calendar.clone();
-        temp.set(Calendar.MONTH, startMonth);
-        dateStart = temp.getTime();
-        temp.set(Calendar.MONTH, endMonth);
-        dateEnd = temp.getTime();
+    public void setDateStartAndDateEnd(int startMonth, int endMonth, int year){
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, startMonth);
+        dateStart = calendar.getTime();
+        calendar.set(Calendar.MONTH, endMonth);
+        dateEnd = calendar.getTime();
     }
 
     public String makeSemesterText(String selectedSemester){
@@ -259,18 +258,6 @@ public class ViewReports extends AppCompatActivity {
         }
 
         return semester.toString();
-    }
-
-    public void nextDay(View view){
-        calendar.add(Calendar.MONTH, 1);
-        date = calendar.getTime();
-        showReportList();
-    }
-
-    public void previousDay(View view){
-        calendar.add(Calendar.MONTH, -1);
-        date = calendar.getTime();
-        showReportList();
     }
 
     public void onStart(){
@@ -315,19 +302,28 @@ public class ViewReports extends AppCompatActivity {
     }
 
     private void semesterMenuPopup() {
+        final String[] semesterLabels = new String[]{ "1st Semester", "Summer Semester", "2nd Semester"};
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final Spinner semesterSpinner = new Spinner(this);
-        ArrayAdapter statusAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, semesterLabels);
-        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.viewreports_filterbysemestermenu, null);
+        alertDialogBuilder.setView(dialogView);
         alertDialogBuilder.setTitle("Select a Semester");
-        semesterSpinner.setAdapter(statusAdapter);
 
-        alertDialogBuilder.setView(semesterSpinner);
+        final Spinner semesterSpinner = dialogView.findViewById(R.id.ViewReports_SemesterSpinner);
+        ArrayAdapter semesterAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, semesterLabels);
+        semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        semesterSpinner.setAdapter(semesterAdapter);
+
+        final Spinner yearSpinner = dialogView.findViewById(R.id.ViewReports_YearSpinner);
+        ArrayAdapter yearAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, getYearArray());
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(yearAdapter);
 
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                filterBySemester(semesterSpinner.getSelectedItem().toString());
+                filterBySemester(semesterSpinner.getSelectedItem().toString(), Integer.parseInt(yearSpinner.getSelectedItem().toString()));
+
             }
         });
         alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -342,11 +338,11 @@ public class ViewReports extends AppCompatActivity {
     }
 
     public void dayMenuPopup() {
+        final Calendar selectedDateCalendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Calendar selectedDateCalendar = Calendar.getInstance();
                         Date selectedDate;
                         selectedDateCalendar.set(Calendar.YEAR, year);
                         selectedDateCalendar.set(Calendar.MONTH, monthOfYear);
@@ -354,11 +350,12 @@ public class ViewReports extends AppCompatActivity {
                         selectedDate = selectedDateCalendar.getTime();
                         filterByDay(selectedDate);
                     }
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                }, selectedDateCalendar.get(Calendar.YEAR), selectedDateCalendar.get(Calendar.MONTH),selectedDateCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
     public void showMonthPickerDialog(View view){
+
         builder = new MonthPickerDialog.Builder(this, new MonthPickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(int selectedMonth, int selectedYear) {
@@ -367,10 +364,18 @@ public class ViewReports extends AppCompatActivity {
                 date = calendar.getTime();
                 showReportList();
             }
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH));
         builder.setMinYear(2016);
         builder.setMaxYear(Calendar.getInstance().get(Calendar.YEAR));
         builder.build().show();
+    }
+
+    private ArrayList<Integer> getYearArray(){
+        ArrayList<Integer> yearList = new ArrayList<>();
+        for (int initialYear = Calendar.getInstance().get(Calendar.YEAR); initialYear >= 2016; initialYear--){
+            yearList.add(initialYear);
+        }
+        return yearList;
     }
 
     @Override

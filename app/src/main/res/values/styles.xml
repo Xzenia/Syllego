@@ -18,6 +18,25 @@
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
 
+    <style name="MonthPickerDialogStyle" >
+        <item name="monthBgColor">#43B0CD</item>
+        <item name="monthBgSelectedColor">#083366</item>
+        <item name="monthFontColorSelected">#ffffff</item>
+        <item name="monthFontColorNormal">#ffffff</item>
+        <item name="monthFontColorDisabled">#000000</item>
+
+        <item name="headerBgColor">#ad41beff</item>
+        <item name="headerFontColorSelected">#ffffff</item>
+        <item name="headerFontColorNormal">#ffffff</item>
+        <item name="headerTitleColor">#ffffff</item>
+
+        <item name="dialogActionButtonColor">#ffffff</item>
+    </style>
+
+    <style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">#083366</item>
+    </style>
+
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
