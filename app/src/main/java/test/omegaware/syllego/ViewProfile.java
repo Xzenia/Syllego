@@ -25,8 +25,6 @@ public class ViewProfile extends AppCompatActivity {
 
     private TextView fullNameTextView;
     private TextView departmentTextView;
-    private TextView numberOfBooksBorrowedTextView;
-    private TextView numberOfBooksReturnedTextView;
 
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -56,8 +54,6 @@ public class ViewProfile extends AppCompatActivity {
 
                         fullNameTextView.setText("Name: " + profileData.getName());
                         departmentTextView.setText("Department: " + profileData.getDepartment());
-                        numberOfBooksBorrowedTextView.setText("Number of Books Borrowed: " + profileData.getNumberOfBooksBorrowed());
-                        numberOfBooksReturnedTextView.setText("Number of Books Returned: " + profileData.getNumberOfBooksReturned());
                     }
                 }
             }

@@ -101,7 +101,7 @@ public class AddBook extends AppCompatActivity {
             bdc.addData(newBook);
             toastMessage("Successfully added book data!");
             clearFields();
-            hdc.addToHistory("You've added "+newBook.getBookName()+" in your catalogue!");
+            hdc.addToHistory("You've added "+newBook.getBookName()+" in the catalogue!");
         } else {
             toastMessage(errorStringBuilder.toString());
         }

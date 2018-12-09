@@ -121,9 +121,9 @@ public class EditBook extends AppCompatActivity {
             goToViewBook(updatedBook);
 
             if (!updatedBook.getBookName().matches(selectedBook.getBookName())){
-                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in your catalogue! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
+                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
             } else {
-                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in your catalogue!");
+                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue!");
             }
 
         } else {
@@ -173,7 +173,7 @@ public class EditBook extends AppCompatActivity {
         bdc.deleteData(selectedBook.getBookID());
         Intent goToMainActivity = new Intent (this, BookList.class);
         toastMessage("Book entry deleted!");
-        hdc.addToHistory("You've deleted "+selectedBook.getBookName()+" from your catalogue!");
+        hdc.addToHistory("You've deleted "+selectedBook.getBookName()+" from the catalogue!");
         startActivity(goToMainActivity);
     }
 
