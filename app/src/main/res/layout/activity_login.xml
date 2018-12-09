@@ -14,10 +14,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:fontFamily="@font/exo_2_light"
-        android:text="Ver. 1.4"
+        android:text="Ver. 1.5"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="14dp"
-        tools:text="Ver. 1.4" />
+        tools:text="Ver. 1.5" />
 
     <Button
         android:id="@+id/LoginButton"

@@ -53,6 +53,7 @@ public class ViewReports extends AppCompatActivity {
     private Date dateEnd;
     private Calendar calendar;
     private DateFormat searchDateFormat;
+    private int selectionSwitch = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +128,7 @@ public class ViewReports extends AppCompatActivity {
         mRecyclerAdapter.startListening();
     }
 
-    private void filterByDay(Date date){
+    private void filterByDay(Date date, Calendar calendar){
         DateFormat textViewDateFormat = new SimpleDateFormat("MMM dd yyyy");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Query query = databaseReference.orderByChild("dateAdded").startAt(dateFormat.format(date)).endAt(dateFormat.format(date)+"\uf8ff");
@@ -281,6 +282,20 @@ public class ViewReports extends AppCompatActivity {
         recyclerView.setVisibility(View.VISIBLE);
     }
 
+    public void showDialog(View view){
+        switch (selectionSwitch){
+            case 0:
+                showMonthPickerDialog();
+                break;
+            case 1:
+                dayMenuPopup();
+                break;
+            case 2:
+                semesterMenuPopup();
+                break;
+        }
+    }
+
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
@@ -290,12 +305,21 @@ public class ViewReports extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.ViewReports_Semester:
-                semesterMenuPopup();
+            case R.id.ViewReports_Monthly:
+                showMonthPickerDialog();
+                selectionSwitch = 0;
                 return true;
+
             case R.id.ViewReports_Daily:
                 dayMenuPopup();
+                selectionSwitch = 1;
                 return true;
+
+            case R.id.ViewReports_Semester:
+                semesterMenuPopup();
+                selectionSwitch = 2;
+                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }
@@ -348,14 +372,13 @@ public class ViewReports extends AppCompatActivity {
                         selectedDateCalendar.set(Calendar.MONTH, monthOfYear);
                         selectedDateCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         selectedDate = selectedDateCalendar.getTime();
-                        filterByDay(selectedDate);
+                        filterByDay(selectedDate, selectedDateCalendar);
                     }
                 }, selectedDateCalendar.get(Calendar.YEAR), selectedDateCalendar.get(Calendar.MONTH),selectedDateCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
-    public void showMonthPickerDialog(View view){
-
+    public void showMonthPickerDialog(){
         builder = new MonthPickerDialog.Builder(this, new MonthPickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(int selectedMonth, int selectedYear) {
