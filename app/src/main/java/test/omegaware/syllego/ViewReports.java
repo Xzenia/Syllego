@@ -1,9 +1,7 @@
 package test.omegaware.syllego;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,15 +13,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,8 +55,7 @@ public class ViewReports extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reports);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         firebaseLoadingProgressBar = findViewById(R.id.ViewReports_FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BooksAddedList);
         dateTextView = findViewById(R.id.DateTextView);
@@ -114,17 +110,7 @@ public class ViewReports extends AppCompatActivity {
 
         recyclerView.setAdapter(mRecyclerAdapter);
 
-        if (calendar.get(Calendar.MONTH) <= 3){
-            semester = makeSemesterText("2nd Semester");
-        }
-        else if (calendar.get(Calendar.MONTH) > 3 && calendar.get(Calendar.MONTH) <= 7){
-            semester = makeSemesterText("Summer Semester");
-        }
-        else if (calendar.get(Calendar.MONTH) > 7 && calendar.get(Calendar.MONTH) <= 11){
-            semester = makeSemesterText("1st Semester");
-        }
-
-        dateTextView.setText(semester+"\n"+textViewDateFormat.format(date));
+        dateTextView.setText(textViewDateFormat.format(date));
         mRecyclerAdapter.startListening();
     }
 
@@ -257,7 +243,6 @@ public class ViewReports extends AppCompatActivity {
             temp.add(Calendar.YEAR, 1);
             semester.append(temp.get(Calendar.YEAR));
         }
-
         return semester.toString();
     }
 
@@ -290,9 +275,6 @@ public class ViewReports extends AppCompatActivity {
             case 1:
                 dayMenuPopup();
                 break;
-            case 2:
-                semesterMenuPopup();
-                break;
         }
     }
 
@@ -315,50 +297,9 @@ public class ViewReports extends AppCompatActivity {
                 selectionSwitch = 1;
                 return true;
 
-            case R.id.ViewReports_Semester:
-                semesterMenuPopup();
-                selectionSwitch = 2;
-                return true;
-
             default:
                 return super.onContextItemSelected(item);
         }
-    }
-
-    private void semesterMenuPopup() {
-        final String[] semesterLabels = new String[]{ "1st Semester", "Summer Semester", "2nd Semester"};
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.viewreports_filterbysemestermenu, null);
-        alertDialogBuilder.setView(dialogView);
-        alertDialogBuilder.setTitle("Select a Semester");
-
-        final Spinner semesterSpinner = dialogView.findViewById(R.id.ViewReports_SemesterSpinner);
-        ArrayAdapter semesterAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, semesterLabels);
-        semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        semesterSpinner.setAdapter(semesterAdapter);
-
-        final Spinner yearSpinner = dialogView.findViewById(R.id.ViewReports_YearSpinner);
-        ArrayAdapter yearAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, getYearArray());
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        yearSpinner.setAdapter(yearAdapter);
-
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                filterBySemester(semesterSpinner.getSelectedItem().toString(), Integer.parseInt(yearSpinner.getSelectedItem().toString()));
-
-            }
-        });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
     }
 
     public void dayMenuPopup() {

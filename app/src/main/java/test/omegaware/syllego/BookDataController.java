@@ -2,6 +2,7 @@ package test.omegaware.syllego;
 
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -9,7 +10,7 @@ public class BookDataController {
 
     private static final String TAG = "BookDataController";
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final DatabaseReference bookReference = database.getReference("Book").child("BookList");
+    private final DatabaseReference bookReference = database.getReference("Book").child("BookList").child(FirebaseAuth.getInstance().getUid());
 
     public void addData(Book newBook){
         DatabaseReference childBookReference = bookReference.push();

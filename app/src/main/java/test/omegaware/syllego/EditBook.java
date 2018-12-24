@@ -37,13 +37,15 @@ public class EditBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
 
+        bdc = new BookDataController();
+        hdc = new HistoryDataController();
+
         editBookNameField = findViewById(R.id.Edit_BookName);
         editBookAuthorField = findViewById(R.id.Edit_BookAuthor);
         editBookYearReleasedField = findViewById(R.id.Edit_BookYearReleased);
         editBookISBNField = findViewById(R.id.Edit_ISBN);
         editBookNumberOfCopiesField = findViewById(R.id.Edit_CopiesAvailable);
-        bdc = new BookDataController();
-        hdc = new HistoryDataController();
+
         Bundle data = getIntent().getExtras();
         selectedBook = (Book) data.get("SelectedBook");
 
@@ -113,8 +115,9 @@ public class EditBook extends AppCompatActivity {
         }
 
         updatedBook.setBookID(selectedBook.getBookID());
-        updatedBook.setUsername(selectedBook.getUsername());
-
+        updatedBook.setUserID(selectedBook.getUserID());
+        updatedBook.setDateAdded(selectedBook.getDateAdded());
+        updatedBook.setFilterDateAdded(selectedBook.getFilterDateAdded());
         if (errorStringBuilder.toString().equals("")) {
             bdc.editData(updatedBook);
             toastMessage("Successfully edited book data!");

@@ -45,9 +45,10 @@ public class BookList extends AppCompatActivity {
         setTheme(R.style.Theme_AppCompat_Light);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList").child(firebaseAuth.getCurrentUser().getUid());
+        databaseReference.keepSynced(true);
         firebaseLoadingProgressBar = findViewById(R.id.FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BookContentList);
 
@@ -168,16 +169,12 @@ public class BookList extends AppCompatActivity {
                 Intent historyActivity = new Intent(this, DataHistory.class);
                 startActivity(historyActivity);
                 return true;
-            case R.id.ViewTransaction:
-                Intent booksBorrowedActivity = new Intent(this, BooksBorrowedList.class);
-                startActivity(booksBorrowedActivity);
-                return true;
             case R.id.SignOutButton:
                 signOutUser();
                 return true;
             case R.id.AddItem:
                 Intent addBookPage = new Intent(this, AddBook.class);
-                addBookPage.putExtra("Username", firebaseAuth.getCurrentUser().getDisplayName());
+                addBookPage.putExtra("UserID", firebaseAuth.getCurrentUser().getUid());
                 startActivity(addBookPage);
                 return true;
             case R.id.ViewReports:

@@ -31,14 +31,14 @@ public class AddBook extends AppCompatActivity {
 
     private EditText[] inputFields;
 
-    private String username;
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
         Bundle getUserId = getIntent().getExtras();
-        username = (String) getUserId.get("Username");
+        userID = (String) getUserId.get("UserID");
         bdc = new BookDataController();
         hdc = new HistoryDataController();
 
@@ -46,8 +46,10 @@ public class AddBook extends AppCompatActivity {
         addBookAuthorField = findViewById(R.id.Add_BookAuthor);
         addBookYearReleasedField = findViewById(R.id.Add_BookYearReleased);
         addBookISBNField = findViewById(R.id.Add_ISBN);
-        inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField};
         copiesAvailableField = findViewById(R.id.Add_CopiesAvailable);
+
+        inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField, copiesAvailableField};
+
         barCodeScan = new IntentIntegrator(this);
 
         getSupportActionBar().setTitle(R.string.add_a_book);
@@ -57,7 +59,7 @@ public class AddBook extends AppCompatActivity {
     public void addBook(View view){
         Book newBook = new Book();
         Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat reportsDateFormat = new SimpleDateFormat("MMM yyyy");
         StringBuilder errorStringBuilder = new StringBuilder();
         if (addBookNameField.getText().toString().isEmpty()){
@@ -93,7 +95,7 @@ public class AddBook extends AppCompatActivity {
             newBook.setNumberOfCopies(Integer.parseInt(copiesAvailableField.getText().toString()));
         }
 
-        newBook.setUsername(username);
+        newBook.setUserID(userID);
         newBook.setDateAdded(dateFormat.format(date));
         newBook.setFilterDateAdded(reportsDateFormat.format(date));
 

@@ -18,7 +18,6 @@ public class ViewBook extends AppCompatActivity {
     private TextView viewBookAuthorField;
     private TextView viewBookYearReleasedField;
     private TextView viewBookISBNField;
-    private TextView viewBookNumberOfCopiesField;
     private Book selectedBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class ViewBook extends AppCompatActivity {
         viewBookAuthorField = findViewById(R.id.View_BookAuthor);
         viewBookYearReleasedField = findViewById(R.id.View_BookYearReleased);
         viewBookISBNField = findViewById(R.id.View_BookISBN);
-        viewBookNumberOfCopiesField = findViewById(R.id.View_NumberOfCopies);
         Bundle data = getIntent().getExtras();
 
         selectedBook = (Book) data.get("SelectedBook");
@@ -44,7 +42,6 @@ public class ViewBook extends AppCompatActivity {
         viewBookAuthorField.setText("Author: "+ selectedBook.getBookAuthor());
         viewBookYearReleasedField.setText("Release Year: "+ selectedBook.getYearReleased());
         viewBookISBNField.setText("ISBN: "+ selectedBook.getISBN());
-        viewBookNumberOfCopiesField.setText("Copies Available: "+selectedBook.getNumberOfCopies());
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -59,11 +56,6 @@ public class ViewBook extends AppCompatActivity {
                 Intent editBookPage = new Intent(this, EditBook.class);
                 editBookPage.putExtra("SelectedBook", selectedBook);
                 startActivity(editBookPage);
-                return true;
-            case R.id.ViewBorrowersListItem:
-                Intent borrowersListActivity = new Intent(this, BorrowerList.class);
-                borrowersListActivity.putExtra("SelectedBook", selectedBook);
-                startActivity(borrowersListActivity);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -86,16 +78,6 @@ public class ViewBook extends AppCompatActivity {
     private void goToBookListActivity(){
         Intent goToMainActivity = new Intent(this, BookList.class);
         startActivity(goToMainActivity);
-    }
-
-    public void borrowBook(View view){
-        Intent goToBorrowBook = new Intent(this, BorrowBook.class);
-        goToBorrowBook.putExtra("SelectedBook",selectedBook);
-        if (selectedBook.getNumberOfCopies() >= 1){
-            startActivity(goToBorrowBook);
-        } else {
-            toastMessage("There are no copies available at the moment. Please try again later.");
-        }
     }
 
     public void setIsbnToClipboard(View view){

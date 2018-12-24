@@ -152,8 +152,6 @@
             android:textColor="#ffffff"
             android:textSize="24dp" />
 
-
     </LinearLayout>
-
 
 </LinearLayout>

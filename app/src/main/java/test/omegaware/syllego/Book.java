@@ -4,24 +4,23 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-    private String Username = "";
+    private String UserID = "";
     private String BookID = "";
     private String BookName = "";
     private String BookAuthor = "";
     private String YearReleased = "";
     private String ISBN = "";
     private int NumberOfCopies = 0;
-    private String DateAdded;
-    private String FilterDateAdded;
+    private String DateAdded = "";
+    private String FilterDateAdded = "";
 
-    public String getUsername() {
-        return Username;
+    public String getUserID() {
+        return UserID;
     }
 
-    public void setUsername(String username) {
-        Username = username;
+    public void setUserID(String userID) {
+        UserID = userID;
     }
-
     public String getBookID() {
         return BookID;
     }
@@ -85,4 +84,5 @@ public class Book implements Serializable {
     public void setFilterDateAdded(String filterDateAdded) {
         FilterDateAdded = filterDateAdded;
     }
+
 }

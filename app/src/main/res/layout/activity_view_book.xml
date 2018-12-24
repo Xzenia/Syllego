@@ -98,34 +98,6 @@
             android:textSize="20dp"
             android:onClick="setIsbnToClipboard"/>
 
-        <TextView
-            android:id="@+id/View_NumberOfCopies"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_weight="0.5"
-            android:background="#009ccc"
-            android:fontFamily="@font/exo_2_light"
-            android:gravity="left|center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="Number of Copies Available: "
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="#ffffff"
-            android:textSize="24dp" />
-
-        <Button
-            android:id="@+id/BorrowBookButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#003b4d"
-            android:fontFamily="@font/exo_2_light"
-            android:onClick="borrowBook"
-            android:text="Borrow Book"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="24dp" />
-
     </LinearLayout>
 
 </LinearLayout>

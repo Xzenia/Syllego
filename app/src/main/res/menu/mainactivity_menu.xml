@@ -22,12 +22,6 @@
 
 
     <item
-        android:id="@+id/ViewTransaction"
-        android:enabled="true"
-        android:title="View Transactions"
-        android:visible="true" />
-
-    <item
         android:id="@+id/ViewReports"
         android:enabled="true"
         android:title="View Reports"

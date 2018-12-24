@@ -18,7 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener  {
 
     private static final String TAG = "LoginActivity";
@@ -26,13 +25,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private EditText passwordEditText;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
     private boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         emailEditText = findViewById(R.id.UsernameEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
         firebaseAuth = FirebaseAuth.getInstance();

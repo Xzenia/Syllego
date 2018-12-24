@@ -9,8 +9,4 @@
         android:id="@+id/ViewReports_Monthly"
         android:title="By month" />
 
-    <item
-        android:id="@+id/ViewReports_Semester"
-        android:title="By semester" />
-
 </menu>

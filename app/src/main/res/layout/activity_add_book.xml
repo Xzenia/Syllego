@@ -125,7 +125,7 @@
             android:ems="10"
             android:fontFamily="@font/exo_2_light"
             android:hint="@string/copies_available"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:textColor="#0e0e0e"
             android:textSize="18dp" />

@@ -22,10 +22,6 @@ public class History {
         this.message = message;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
     public void setUserID(String userID) {
         this.userID = userID;
     }

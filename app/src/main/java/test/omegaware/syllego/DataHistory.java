@@ -40,7 +40,7 @@ public class DataHistory extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("History").child("Logs");
+        databaseReference = FirebaseDatabase.getInstance().getReference("History").child("Logs").child(userId);
         dataHistoryLoadingProgressBar = findViewById(R.id.DataHistoryLoadingProgressBar);
         recyclerView = findViewById(R.id.DataHistoryList);
         showProgressBar();
@@ -51,7 +51,7 @@ public class DataHistory extends AppCompatActivity {
     }
 
     private void initializeRecyclerView(){
-        Query query = databaseReference.orderByChild("userID").equalTo(userId);
+        Query query = databaseReference.orderByChild("date");
         FirebaseRecyclerOptions historyOptions = new FirebaseRecyclerOptions.Builder<History>().setQuery(query, History.class).build();
 
         recyclerView.hasFixedSize();

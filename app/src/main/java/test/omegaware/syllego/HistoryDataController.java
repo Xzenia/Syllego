@@ -10,9 +10,10 @@ import java.util.Date;
 
 public class HistoryDataController {
 
-    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final DatabaseReference historyReference = database.getReference("History").child("Logs");
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference historyReference = database.getReference("History").child("Logs").child(firebaseAuth.getCurrentUser().getUid());
+
 
     public void addToHistory(String message){
         DatabaseReference newHistoryReference = historyReference.push();
