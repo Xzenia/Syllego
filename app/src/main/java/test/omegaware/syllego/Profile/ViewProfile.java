@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Profile;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,6 +18,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import test.omegaware.syllego.DataHistory.ViewHistory;
+import test.omegaware.syllego.Model.User;
+import test.omegaware.syllego.R;
 
 public class ViewProfile extends AppCompatActivity {
 
@@ -74,7 +78,7 @@ public class ViewProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ShowHistory:
-                Intent historyActivity = new Intent(this, DataHistory.class);
+                Intent historyActivity = new Intent(this, ViewHistory.class);
                 startActivity(historyActivity);
                 return true;
             default:

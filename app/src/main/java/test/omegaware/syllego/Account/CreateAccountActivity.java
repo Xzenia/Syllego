@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Account;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import test.omegaware.syllego.Controller.UserDataController;
+import test.omegaware.syllego.R;
+import test.omegaware.syllego.Model.User;
 
 public class CreateAccountActivity extends AppCompatActivity {
 

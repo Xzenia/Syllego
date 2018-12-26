@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context=".AddBook">
+    tools:context=".Books.AddBook">
 
 
     <LinearLayout
@@ -27,7 +27,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="Add a Book" />
-
 
         <AutoCompleteTextView
             android:id="@+id/Add_BookName"
@@ -129,6 +128,16 @@
             android:paddingLeft="10dp"
             android:textColor="#0e0e0e"
             android:textSize="18dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <CheckBox
+            android:id="@+id/Add_WishlistCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Wish List" />
 
         <Space
             android:layout_width="match_parent"

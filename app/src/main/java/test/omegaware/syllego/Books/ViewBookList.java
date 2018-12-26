@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Books;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -29,9 +29,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class BookList extends AppCompatActivity {
+import test.omegaware.syllego.Account.LoginAccountActivity;
+import test.omegaware.syllego.Model.Book;
+import test.omegaware.syllego.R;
+import test.omegaware.syllego.DataHistory.ViewHistory;
+import test.omegaware.syllego.Profile.ViewProfile;
+import test.omegaware.syllego.Reports.ViewReports;
+import test.omegaware.syllego.Wishlist.ViewWishlist;
 
-    private static final String TAG = "BookList";
+public class ViewBookList extends AppCompatActivity {
+
+    private static final String TAG = "ViewBookList";
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter mRecyclerAdapter;
     private FirebaseAuth firebaseAuth;
@@ -165,8 +173,12 @@ public class BookList extends AppCompatActivity {
                 Intent viewProfile = new Intent(this, ViewProfile.class);
                 startActivity(viewProfile);
                 return true;
+            case R.id.ViewWishlist:
+                Intent viewWishlist = new Intent(this, ViewWishlist.class);
+                startActivity(viewWishlist);
+                return true;
             case R.id.ShowHistory:
-                Intent historyActivity = new Intent(this, DataHistory.class);
+                Intent historyActivity = new Intent(this, ViewHistory.class);
                 startActivity(historyActivity);
                 return true;
             case R.id.SignOutButton:
@@ -191,7 +203,7 @@ public class BookList extends AppCompatActivity {
     }
 
     private void signOutUser(){
-        Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent loginPage = new Intent(getApplicationContext(), LoginAccountActivity.class);
         startActivity(loginPage);
         firebaseAuth.signOut();
         this.finish();
@@ -218,7 +230,7 @@ public class BookList extends AppCompatActivity {
     }
 
     public static class BookListViewHolder extends RecyclerView.ViewHolder {
-        final View mView;
+        public final View mView;
         public BookListViewHolder(View itemView) {
             super(itemView);
             mView = itemView;

@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Account.LoginAccountActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,36 +17,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddBook"
+            android:name=".Books.AddBook"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".ViewBook"
+            android:name=".Books.ViewBook"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".EditBook"
+            android:name=".Books.EditBook"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".BookList" />
+        <activity android:name=".Books.ViewBookList" />
         <activity
-            android:name=".CreateAccountActivity"
+            android:name=".Account.CreateAccountActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".DataHistory"
+            android:name=".DataHistory.ViewHistory"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".ViewProfile"
+            android:name=".Profile.ViewProfile"
             android:theme="@style/Theme.AppCompat.Light" />
-
         <activity
-            android:name=".ViewReports"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:name=".Reports.ViewReports"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".Wishlist.ViewWishlist"
+            android:theme="@style/Theme.AppCompat.Light" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
     </application>
-
-
 
 </manifest>

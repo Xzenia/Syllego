@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Model;
 
 import java.io.Serializable;
 

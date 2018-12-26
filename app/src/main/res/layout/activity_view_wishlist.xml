@@ -4,20 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Books.ViewBookList">
+    tools:context=".Wishlist.ViewWishlist">
 
     <ProgressBar
         android:id="@+id/FirebaseLoadingProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_width="wrap_content"
+        android:layout_weight="1"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/BookContentList"
+        android:id="@+id/WishlistContentList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient" />
-
 </LinearLayout>

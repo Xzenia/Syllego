@@ -1,10 +1,11 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Books;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +16,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import test.omegaware.syllego.Controller.BookDataController;
+import test.omegaware.syllego.Controller.HistoryDataController;
+import test.omegaware.syllego.Controller.WishlistDataController;
+import test.omegaware.syllego.Model.Book;
+import test.omegaware.syllego.R;
+
 public class AddBook extends AppCompatActivity {
 
     private static final String TAG = "AddBook";
@@ -24,12 +31,13 @@ public class AddBook extends AppCompatActivity {
     private EditText addBookISBNField;
     private IntentIntegrator barCodeScan;
     private EditText copiesAvailableField;
+    private EditText[] inputFields;
 
     private BookDataController bdc;
-
     private HistoryDataController hdc;
+    private WishlistDataController wdc;
 
-    private EditText[] inputFields;
+    private CheckBox addToWishlistCheckBox;
 
     private String userID;
     @Override
@@ -41,16 +49,19 @@ public class AddBook extends AppCompatActivity {
         userID = (String) getUserId.get("UserID");
         bdc = new BookDataController();
         hdc = new HistoryDataController();
+        wdc = new WishlistDataController();
 
         addBookNameField = findViewById(R.id.Add_BookName);
         addBookAuthorField = findViewById(R.id.Add_BookAuthor);
         addBookYearReleasedField = findViewById(R.id.Add_BookYearReleased);
         addBookISBNField = findViewById(R.id.Add_ISBN);
         copiesAvailableField = findViewById(R.id.Add_CopiesAvailable);
+        addToWishlistCheckBox = findViewById(R.id.Add_WishlistCheckBox);
 
         inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField, copiesAvailableField};
 
         barCodeScan = new IntentIntegrator(this);
+
 
         getSupportActionBar().setTitle(R.string.add_a_book);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -100,10 +111,18 @@ public class AddBook extends AppCompatActivity {
         newBook.setFilterDateAdded(reportsDateFormat.format(date));
 
         if (errorStringBuilder.toString().equals("")) {
-            bdc.addData(newBook);
-            toastMessage("Successfully added book data!");
-            clearFields();
-            hdc.addToHistory("You've added "+newBook.getBookName()+" in the catalogue!");
+            if (addToWishlistCheckBox.isChecked()){
+                wdc.addData(newBook);
+                toastMessage("Successfully added book data to your wish list!");
+                clearFields();
+                hdc.addToHistory("You've added "+newBook.getBookName()+" in your wishlist!");
+            } else {
+                bdc.addData(newBook);
+                toastMessage("Successfully added book data to library!");
+                clearFields();
+                hdc.addToHistory("You've added "+newBook.getBookName()+" in the catalogue!");
+            }
+
         } else {
             toastMessage(errorStringBuilder.toString());
         }
@@ -130,6 +149,9 @@ public class AddBook extends AppCompatActivity {
     private void clearFields(){
         for(EditText field: inputFields){
             field.setText("");
+        }
+        if (addToWishlistCheckBox.isChecked()){
+            addToWishlistCheckBox.toggle();
         }
     }
 

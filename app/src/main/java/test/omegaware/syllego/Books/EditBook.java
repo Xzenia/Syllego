@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Books;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,12 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import test.omegaware.syllego.Controller.BookDataController;
+import test.omegaware.syllego.Controller.HistoryDataController;
+import test.omegaware.syllego.Controller.WishlistDataController;
+import test.omegaware.syllego.Model.Book;
+import test.omegaware.syllego.R;
 
 public class EditBook extends AppCompatActivity {
 
@@ -32,6 +38,7 @@ public class EditBook extends AppCompatActivity {
     private HistoryDataController hdc;
 
     private DialogInterface.OnClickListener deleteDialogInterfaceListener;
+    private boolean wishList = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,7 @@ public class EditBook extends AppCompatActivity {
 
         Bundle data = getIntent().getExtras();
         selectedBook = (Book) data.get("SelectedBook");
+        wishList = data.getBoolean("WishList");
 
         fillFields();
 
@@ -79,6 +87,7 @@ public class EditBook extends AppCompatActivity {
 
     public void editBook(View view){
         Book updatedBook = new Book();
+        WishlistDataController wdc = new WishlistDataController();
         StringBuilder errorStringBuilder = new StringBuilder();
 
         if (editBookNameField.getText().toString().isEmpty()){
@@ -118,17 +127,26 @@ public class EditBook extends AppCompatActivity {
         updatedBook.setUserID(selectedBook.getUserID());
         updatedBook.setDateAdded(selectedBook.getDateAdded());
         updatedBook.setFilterDateAdded(selectedBook.getFilterDateAdded());
-        if (errorStringBuilder.toString().equals("")) {
-            bdc.editData(updatedBook);
-            toastMessage("Successfully edited book data!");
-            goToViewBook(updatedBook);
 
-            if (!updatedBook.getBookName().matches(selectedBook.getBookName())){
-                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
+        if (errorStringBuilder.toString().equals("")) {
+            if (wishList){
+                wdc.editData(updatedBook);
+                if (!updatedBook.getBookName().matches(selectedBook.getBookName())){
+                    hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the wish list! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
+                } else {
+                    hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the wish list!");
+                }
             } else {
-                hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue!");
+                bdc.editData(updatedBook);
+                if (!updatedBook.getBookName().matches(selectedBook.getBookName())){
+                    hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue! "+selectedBook.getBookName()+" was renamed to "+updatedBook.getBookName());
+                } else {
+                    hdc.addToHistory("You've edited "+selectedBook.getBookName()+"'s information in the catalogue!");
+                }
             }
 
+            toastMessage("Successfully edited book data!");
+            goToViewBook(updatedBook);
         } else {
             toastMessage(errorStringBuilder.toString());
         }
@@ -174,7 +192,7 @@ public class EditBook extends AppCompatActivity {
 
     private void deleteItem(){
         bdc.deleteData(selectedBook.getBookID());
-        Intent goToMainActivity = new Intent (this, BookList.class);
+        Intent goToMainActivity = new Intent (this, ViewBookList.class);
         toastMessage("Book entry deleted!");
         hdc.addToHistory("You've deleted "+selectedBook.getBookName()+" from the catalogue!");
         startActivity(goToMainActivity);

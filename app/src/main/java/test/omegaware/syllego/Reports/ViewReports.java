@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Reports;
 
 import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
@@ -35,6 +35,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import test.omegaware.syllego.Books.ViewBookList;
+import test.omegaware.syllego.Model.Book;
+import test.omegaware.syllego.R;
+
 public class ViewReports extends AppCompatActivity {
 
     private final String TAG = "ViewReports";
@@ -55,7 +59,7 @@ public class ViewReports extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reports);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("ViewBookList").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         firebaseLoadingProgressBar = findViewById(R.id.ViewReports_FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BooksAddedList);
         dateTextView = findViewById(R.id.DateTextView);
@@ -80,18 +84,18 @@ public class ViewReports extends AppCompatActivity {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, BookList.BookListViewHolder>(booksOptions) {
+        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, ViewBookList.BookListViewHolder>(booksOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull BookList.BookListViewHolder holder, int position, @NonNull final Book model) {
+            protected void onBindViewHolder(@NonNull ViewBookList.BookListViewHolder holder, int position, @NonNull final Book model) {
                 holder.setBookName(model.getBookName());
                 holder.setBookAuthor(model.getBookAuthor());
                 holder.setBookYearReleased(model.getYearReleased());
             }
             @NonNull
             @Override
-            public BookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ViewBookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookcontentlist_item, parent, false);
-                return new BookList.BookListViewHolder(view);
+                return new ViewBookList.BookListViewHolder(view);
             }
         };
 
@@ -123,18 +127,18 @@ public class ViewReports extends AppCompatActivity {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, BookList.BookListViewHolder>(booksOptions) {
+        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, ViewBookList.BookListViewHolder>(booksOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull BookList.BookListViewHolder holder, int position, @NonNull final Book model) {
+            protected void onBindViewHolder(@NonNull ViewBookList.BookListViewHolder holder, int position, @NonNull final Book model) {
                 holder.setBookName(model.getBookName());
                 holder.setBookAuthor(model.getBookAuthor());
                 holder.setBookYearReleased(model.getYearReleased());
             }
             @NonNull
             @Override
-            public BookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ViewBookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookcontentlist_item, parent, false);
-                return new BookList.BookListViewHolder(view);
+                return new ViewBookList.BookListViewHolder(view);
             }
         };
 
@@ -188,18 +192,18 @@ public class ViewReports extends AppCompatActivity {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, BookList.BookListViewHolder>(booksOptions) {
+        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, ViewBookList.BookListViewHolder>(booksOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull BookList.BookListViewHolder holder, int position, @NonNull final Book model) {
+            protected void onBindViewHolder(@NonNull ViewBookList.BookListViewHolder holder, int position, @NonNull final Book model) {
                 holder.setBookName(model.getBookName());
                 holder.setBookAuthor(model.getBookAuthor());
                 holder.setBookYearReleased(model.getYearReleased());
             }
             @NonNull
             @Override
-            public BookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ViewBookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookcontentlist_item, parent, false);
-                return new BookList.BookListViewHolder(view);
+                return new ViewBookList.BookListViewHolder(view);
             }
         };
 

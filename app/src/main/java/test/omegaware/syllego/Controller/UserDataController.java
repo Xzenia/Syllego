@@ -1,9 +1,11 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Controller;
 
 import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import test.omegaware.syllego.Model.User;
 
 public class UserDataController {
 

@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.DataHistory;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class DataHistory extends AppCompatActivity {
+import test.omegaware.syllego.Model.History;
+import test.omegaware.syllego.R;
 
-    private static final String TAG = "BookList";
+public class ViewHistory extends AppCompatActivity {
+
+    private static final String TAG = "ViewBookList";
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter mRecyclerAdapter;
     private FirebaseAuth firebaseAuth;
@@ -57,7 +60,7 @@ public class DataHistory extends AppCompatActivity {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerAdapter = new FirebaseRecyclerAdapter<History, DataHistory.DataHistoryListViewHolder>(historyOptions) {
+        mRecyclerAdapter = new FirebaseRecyclerAdapter<History, ViewHistory.DataHistoryListViewHolder>(historyOptions) {
             @Override
             protected void onBindViewHolder(@NonNull DataHistoryListViewHolder holder, int position, @NonNull History model) {
                 holder.setDate(model.getDate());
@@ -66,9 +69,9 @@ public class DataHistory extends AppCompatActivity {
 
             @NonNull
             @Override
-            public DataHistory.DataHistoryListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ViewHistory.DataHistoryListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.datahistorycontentlist_item, parent, false);
-                return new DataHistory.DataHistoryListViewHolder(view);
+                return new ViewHistory.DataHistoryListViewHolder(view);
             }
         };
 

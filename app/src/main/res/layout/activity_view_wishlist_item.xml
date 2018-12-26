@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/holo_blue_bright"
-    tools:context=".Books.ViewBook">
+    android:background="@android:color/holo_blue_bright">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/view_BookName"
+            android:id="@+id/View_BookName_TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_bright"
@@ -98,6 +97,21 @@
             android:textSize="20dp"
             android:onClick="setIsbnToClipboard"/>
 
-    </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
+        <Button
+            android:id="@+id/BookObtainedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#003b4d"
+            android:fontFamily="@font/exo_2_light"
+            android:onClick="bookObtained"
+            android:text="Book Obtained!"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+
+    </LinearLayout>
 </LinearLayout>

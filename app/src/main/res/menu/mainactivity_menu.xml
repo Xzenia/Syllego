@@ -15,6 +15,12 @@
         android:visible="true" />
 
     <item
+        android:id="@+id/ViewWishlist"
+        android:enabled="true"
+        android:title="Wish List"
+        android:visible="true" />
+
+    <item
         android:id="@+id/ViewProfile"
         android:enabled="true"
         android:title="@string/view_profile"
@@ -32,7 +38,5 @@
         android:enabled="true"
         android:title="@string/sign_out"
         android:visible="true" />
-
-
 
 </menu>

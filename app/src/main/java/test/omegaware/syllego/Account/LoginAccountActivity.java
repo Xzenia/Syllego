@@ -1,4 +1,4 @@
-package test.omegaware.syllego;
+package test.omegaware.syllego.Account;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -18,9 +18,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener  {
+import test.omegaware.syllego.Books.ViewBookList;
+import test.omegaware.syllego.R;
 
-    private static final String TAG = "LoginActivity";
+public class LoginAccountActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener  {
+
+    private static final String TAG = "LoginAccountActivity";
     private EditText emailEditText;
     private EditText passwordEditText;
     private FirebaseAuth firebaseAuth;
@@ -73,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void goToBookList(){
-        Intent goToBookList = new Intent(this, BookList.class);
+        Intent goToBookList = new Intent(this, ViewBookList.class);
         startActivity(goToBookList);
     }
     public void GoToCreateAccountActivity(View view){
