@@ -59,7 +59,7 @@ public class ViewReports extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reports);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("ViewBookList").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference("Book").child("BookList").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         firebaseLoadingProgressBar = findViewById(R.id.ViewReports_FirebaseLoadingProgressBar);
         recyclerView = findViewById(R.id.BooksAddedList);
         dateTextView = findViewById(R.id.DateTextView);
@@ -80,7 +80,6 @@ public class ViewReports extends AppCompatActivity {
         DateFormat textViewDateFormat = new SimpleDateFormat("MMM yyyy");
         Query query = databaseReference.orderByChild("filterDateAdded").startAt(searchDateFormat.format(date)).endAt(searchDateFormat.format(date)+"\uf8ff");
         FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
-        String semester = "";
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -123,7 +122,6 @@ public class ViewReports extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Query query = databaseReference.orderByChild("dateAdded").startAt(dateFormat.format(date)).endAt(dateFormat.format(date)+"\uf8ff");
         FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(query, Book.class).build();
-        String semester = "";
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -156,98 +154,8 @@ public class ViewReports extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(mRecyclerAdapter);
-
-        if (calendar.get(Calendar.MONTH) <= 3){
-            semester = makeSemesterText("2nd Semester");
-        }
-        else if (calendar.get(Calendar.MONTH) > 3 && calendar.get(Calendar.MONTH) <= 7){
-            semester = makeSemesterText("Summer Semester");
-        }
-        else if (calendar.get(Calendar.MONTH) > 7 && calendar.get(Calendar.MONTH) <= 11){
-            semester = makeSemesterText("1st Semester");
-        }
-
-        dateTextView.setText(semester+"\n"+textViewDateFormat.format(date));
+        dateTextView.setText(textViewDateFormat.format(date));
         mRecyclerAdapter.startListening();
-    }
-
-    public void filterBySemester(String selectedItem, int year){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
-
-        if (selectedItem.matches("2nd Semester")){
-            setDateStartAndDateEnd(0,3, year);
-        }
-
-        else if (selectedItem.matches("Summer Semester")){
-            setDateStartAndDateEnd(4, 7, year);
-        }
-
-        else if (selectedItem.matches("1st Semester")) {
-            setDateStartAndDateEnd(8,11, year);
-        }
-
-        Query semesterQuery = databaseReference.orderByChild("dateAdded").startAt(dateFormat.format(dateStart)).endAt(dateFormat.format(dateEnd)+"\uf8ff");
-        FirebaseRecyclerOptions booksOptions = new FirebaseRecyclerOptions.Builder<Book>().setQuery(semesterQuery, Book.class).build();
-
-        recyclerView.hasFixedSize();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mRecyclerAdapter = new FirebaseRecyclerAdapter<Book, ViewBookList.BookListViewHolder>(booksOptions) {
-            @Override
-            protected void onBindViewHolder(@NonNull ViewBookList.BookListViewHolder holder, int position, @NonNull final Book model) {
-                holder.setBookName(model.getBookName());
-                holder.setBookAuthor(model.getBookAuthor());
-                holder.setBookYearReleased(model.getYearReleased());
-            }
-            @NonNull
-            @Override
-            public ViewBookList.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookcontentlist_item, parent, false);
-                return new ViewBookList.BookListViewHolder(view);
-            }
-        };
-
-        semesterQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                hideProgressBar();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "onCancelled", databaseError.toException());
-                toastMessage("Exception occurred:\n"+databaseError.toException());
-            }
-        });
-
-        dateTextView.setText(makeSemesterText(selectedItem));
-        recyclerView.setAdapter(mRecyclerAdapter);
-        mRecyclerAdapter.startListening();
-    }
-
-    public void setDateStartAndDateEnd(int startMonth, int endMonth, int year){
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, startMonth);
-        dateStart = calendar.getTime();
-        calendar.set(Calendar.MONTH, endMonth);
-        dateEnd = calendar.getTime();
-    }
-
-    public String makeSemesterText(String selectedSemester){
-        Calendar temp = (Calendar) calendar.clone();
-        StringBuilder semester = new StringBuilder();
-        semester.append(selectedSemester);
-        if (selectedSemester.matches("2nd Semester")){
-            temp.add(Calendar.YEAR, -1);
-            semester.append(" of "+temp.get(Calendar.YEAR)+" - ");
-            temp.add(Calendar.YEAR, 1);
-            semester.append(temp.get(Calendar.YEAR));
-        } else {
-            semester.append(" of "+temp.get(Calendar.YEAR)+" - ");
-            temp.add(Calendar.YEAR, 1);
-            semester.append(temp.get(Calendar.YEAR));
-        }
-        return semester.toString();
     }
 
     public void onStart(){
@@ -336,14 +244,6 @@ public class ViewReports extends AppCompatActivity {
         builder.setMinYear(2016);
         builder.setMaxYear(Calendar.getInstance().get(Calendar.YEAR));
         builder.build().show();
-    }
-
-    private ArrayList<Integer> getYearArray(){
-        ArrayList<Integer> yearList = new ArrayList<>();
-        for (int initialYear = Calendar.getInstance().get(Calendar.YEAR); initialYear >= 2016; initialYear--){
-            yearList.add(initialYear);
-        }
-        return yearList;
     }
 
     @Override
