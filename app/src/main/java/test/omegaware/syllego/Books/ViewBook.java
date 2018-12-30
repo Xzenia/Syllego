@@ -84,13 +84,11 @@ public class ViewBook extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        goToPreviousActivity();
         this.finish();
     }
 
     @Override
     public boolean onSupportNavigateUp(){
-        goToPreviousActivity();
         this.finish();
         return true;
     }
@@ -100,10 +98,11 @@ public class ViewBook extends AppCompatActivity {
         Intent goToWishlistActivity = new Intent(this, ViewWishlist.class);
         if (wishList){
             startActivity(goToWishlistActivity);
+            this.finish();
         } else {
             startActivity(goToMainActivity);
+            this.finish();
         }
-
     }
 
     public void setIsbnToClipboard(View view){
@@ -117,7 +116,6 @@ public class ViewBook extends AppCompatActivity {
         BookDataController bdc = new BookDataController();
         wdc.deleteData(selectedBook.getBookID());
         bdc.addData(selectedBook);
-
 
         toastMessage("Book added to library!");
         goToPreviousActivity();

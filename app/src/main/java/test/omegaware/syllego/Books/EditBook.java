@@ -206,13 +206,11 @@ public class EditBook extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){
-        goToViewBook(selectedBook);
         this.finish();
         return true;
     }
 
     public void onBackPressed(){
-        goToViewBook(selectedBook);
         this.finish();
     }
 
