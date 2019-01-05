@@ -57,7 +57,6 @@ public class ViewProfile extends AppCompatActivity {
                         User profileData = snapshot.getValue(User.class);
 
                         fullNameTextView.setText("Name: " + profileData.getName());
-                        departmentTextView.setText("Department: " + profileData.getDepartment());
                     }
                 }
             }

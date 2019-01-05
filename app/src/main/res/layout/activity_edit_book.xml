@@ -1,157 +1,165 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:orientation="vertical"
-    tools:context=".Books.EditBook">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/exo_2_light"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/edit_book_information"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="#ffffff"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/Edit_BookName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/roundrect"
-            android:ems="10"
-            android:fontFamily="@font/exo_2"
-            android:hint="@string/book_name"
-            android:inputType="text"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="18dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <EditText
-            android:id="@+id/Edit_BookAuthor"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/roundrect"
-            android:ems="10"
-            android:fontFamily="@font/exo_2"
-            android:hint="@string/author"
-            android:inputType="text"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="18dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <EditText
-            android:id="@+id/Edit_BookYearReleased"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/roundrect"
-            android:ems="10"
-            android:fontFamily="@font/exo_2"
-            android:hint="@string/year_released"
-            android:inputType="number"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="18dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        tools:context=".Books.EditBook">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/Edit_ISBN"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/roundrect"
-                android:ems="10"
-                android:fontFamily="@font/exo_2"
-                android:hint="@string/isbn"
-                android:inputType="text"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18dp" />
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/exo_2_light"
+                    android:gravity="center"
+                    android:paddingTop="6dp"
+                    android:text="@string/edit_book_information"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="359dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="#003b4d"
-                android:fontFamily="@font/exo_2_light"
-                android:onClick="startScanActivity"
-                android:text="@string/scan_bar_code"
-                android:textAllCaps="false"
-                android:textColor="#ffffff"
-                android:textSize="22dp" />
+                <EditText
+                    android:id="@+id/Edit_BookName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundrect"
+                    android:ems="10"
+                    android:fontFamily="@font/exo_2"
+                    android:hint="@string/book_name"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
-            <EditText
-                android:id="@+id/Edit_CopiesAvailable"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/roundrect"
-                android:ems="10"
-                android:fontFamily="@font/exo_2"
-                android:hint="@string/copies_available"
-                android:inputType="number"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18dp" />
+                <EditText
+                    android:id="@+id/Edit_BookAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundrect"
+                    android:ems="10"
+                    android:fontFamily="@font/exo_2"
+                    android:hint="@string/author"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <EditText
+                    android:id="@+id/Edit_BookYearReleased"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundrect"
+                    android:ems="10"
+                    android:fontFamily="@font/exo_2"
+                    android:hint="@string/year_released"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/Edit_ISBN"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/roundrect"
+                        android:ems="10"
+                        android:fontFamily="@font/exo_2"
+                        android:hint="@string/isbn"
+                        android:inputType="text"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18dp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="359dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:background="#003b4d"
+                        android:fontFamily="@font/exo_2_light"
+                        android:onClick="startScanActivity"
+                        android:text="@string/scan_bar_code"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff"
+                        android:textSize="22dp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <EditText
+                        android:id="@+id/Edit_CopiesAvailable"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/roundrect"
+                        android:ems="10"
+                        android:fontFamily="@font/exo_2"
+                        android:hint="@string/copies_available"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <Button
+                    android:id="@+id/ConfirmButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#003b4d"
+                    android:fontFamily="@font/exo_2_light"
+                    android:onClick="editBook"
+                    android:text="@string/edit_book"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/ConfirmButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#003b4d"
-            android:fontFamily="@font/exo_2_light"
-            android:onClick="editBook"
-            android:text="@string/edit_book"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="24dp" />
-
-    </LinearLayout>
-
-</LinearLayout>
+    </ScrollView>

@@ -18,16 +18,4 @@ public class UserDataController {
         childBookReference.setValue(newUser);
         Log.d(TAG, "ADDING BOOK: "+newUser.getName());
     }
-
-    public void incrementBooksBorrowedCounter(User user){
-        DatabaseReference databaseReference = userReference.child(user.getUserId());
-        user.setNumberOfBooksBorrowed(user.getNumberOfBooksBorrowed() + 1);
-        databaseReference.setValue(user);
-    }
-
-    public void incrementBooksReturnedCounter(User user){
-        DatabaseReference databaseReference = userReference.child(user.getUserId());
-        user.setNumberOfBooksReturned(user.getNumberOfBooksReturned() + 1);
-        databaseReference.setValue(user);
-    }
 }

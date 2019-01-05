@@ -3,14 +3,26 @@ package test.omegaware.syllego.Books;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,6 +52,10 @@ public class AddBook extends AppCompatActivity {
     private CheckBox addToWishlistCheckBox;
 
     private String userID;
+
+    private String bookName = "";
+    private String bookAuthor = "";
+    private String bookDatePublished = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +77,6 @@ public class AddBook extends AppCompatActivity {
         inputFields = new EditText[]{addBookNameField, addBookAuthorField, addBookYearReleasedField, addBookISBNField, copiesAvailableField};
 
         barCodeScan = new IntentIntegrator(this);
-
 
         getSupportActionBar().setTitle(R.string.add_a_book);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -139,11 +154,66 @@ public class AddBook extends AppCompatActivity {
         } else {
             try {
                 addBookISBNField.setText(result.getContents());
+                getBookData(result.getContents());
+
+                addBookNameField.setText(bookName);
+                addBookAuthorField.setText(bookAuthor);
+                addBookYearReleasedField.setText(bookDatePublished);
             } catch (Exception e) {
                 e.printStackTrace();
                 toastMessage(result.getContents());
             }
         }
+    }
+
+    private void getBookData(String isbn){
+        String baseUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+        String url = baseUrl + isbn;
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        if (response.length() > 0) {
+                            try {
+                                JSONArray responseArray = response.getJSONArray("items");
+                                for (int counter = 0; counter < responseArray.length(); counter++) {
+                                    JSONObject book = responseArray.getJSONObject(counter);
+                                    JSONObject item = book.getJSONObject("volumeInfo");
+                                    JSONArray authorArray = item.getJSONArray("authors");
+                                    bookName = item.getString("title");
+                                    bookDatePublished = item.getString("publishedDate");
+
+                                    if (authorArray.length() > 1){
+                                        for (int index = 0; index < authorArray.length(); index++){
+                                            if (index == 0){
+                                                bookAuthor = authorArray.get(index).toString();
+                                            } else {
+                                                bookAuthor += ", " + authorArray.get(index).toString();
+                                            }
+                                        }
+                                    } else {
+                                        bookAuthor = authorArray.get(0).toString();
+                                    }
+                                }
+                            } catch (JSONException ex) {
+                                Log.e(TAG, ex.toString());
+                            }
+                        } else {
+                            toastMessage("No book found by that ISBN!");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        toastMessage("Exception Occurred: "+error.toString());
+                        Log.e(TAG, error.toString());
+                    }
+        });
+        queue.add(jsonObjReq);
     }
 
     private void clearFields(){

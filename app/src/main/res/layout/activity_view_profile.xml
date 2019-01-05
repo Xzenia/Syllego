@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    android:orientation="vertical"
-    tools:context=".Profile.ViewProfile">
-
-    <TextView
-        android:id="@+id/fullNameTextView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2"
-        android:padding="6dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="6dp"
-        android:text="Borrower's Profile"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#ffffff"
-        android:textSize="24dp"
-        tools:text="Borrower's Profile" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="263dp"
-        android:layout_margin="10dp"
-        android:background="#003b4d"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="31dp" />
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        android:orientation="vertical"
+        tools:context=".Profile.ViewProfile">
 
         <TextView
-            android:id="@+id/FullNameTextView"
+            android:id="@+id/fullNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/exo_2"
+            android:padding="6dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="Name: "
+            android:paddingTop="6dp"
+            android:text="Borrower's Profile"
+            android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="#ffffff"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            tools:text="Borrower's Profile" />
 
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp" />
+            android:layout_height="263dp"
+            android:layout_margin="10dp"
+            android:background="#003b4d"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/DepartmentTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_2"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="Department: "
-            android:textAlignment="textStart"
-            android:textColor="#ffffff"
-            android:textSize="22dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="31dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
+            <TextView
+                android:id="@+id/FullNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Name: "
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/DepartmentTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Department: "
+                android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="22dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="64dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

@@ -46,7 +46,6 @@ public class ViewBook extends AppCompatActivity {
         viewBookYearReleasedField = findViewById(R.id.View_BookYearReleased);
         viewBookISBNField = findViewById(R.id.View_BookISBN);
 
-
         selectedBook = (Book) data.get("SelectedBook");
         fillFields(selectedBook);
 
